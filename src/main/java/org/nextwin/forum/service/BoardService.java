@@ -1,0 +1,11 @@
+package org.nextwin.forum.service;
+
+import java.util.List;
+
+import org.nextwin.forum.dto.BoardDto;
+
+public interface BoardService {
+	
+	public List<BoardDto> getList() throws Exception;
+	
+}
