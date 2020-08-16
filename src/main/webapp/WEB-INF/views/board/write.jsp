@@ -24,7 +24,9 @@
 	
 </form>
 
-<a href="/board/list">목록으로</a>
+<div id="nav">
+	<%@ include file="../include/nav.jsp" %>
+</div>
 
 </body>
 </html>

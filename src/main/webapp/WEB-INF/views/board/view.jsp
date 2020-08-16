@@ -18,12 +18,13 @@
 	${view.writer}<br/>
 	
 	<label>내용</label><br/>
-	${view.content}<br/>
+	${view.content}<br/><br/>
 		
 </form>
 
-<div>
-	<a href="/board/list">목록으로</a> &nbsp;&nbsp; <a href="/board/modify?bno=${view.bno}">수정</a>
+<div id="nav">
+	<a href="/board/modify?bno=${view.bno}">수정</a>
+	<%@ include file="../include/nav.jsp" %>
 </div>
 
 </body>
