@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+
+<body>
+    <form method="post">
+        이름 : <input type="text" name="name"><br>
+        아이디 : <input type="text" name="id"><br>
+        비밀번호 : <input type="password" name="pw"><br>
+        사진 : <input type="file" name="pic"><br>
+        성별 : <input type="radio" name="gender" value="m">남
+                <input type="radio" name="gender" value="f">여<br>
+        언어 : <input type="checkbox" name="lang" value="kor">한국어
+                <input type="checkbox" name="lang" value="eng">영어
+                <input type="checkbox" name="lang" value="jap">일본어
+                <input type="checkbox" name="lang" value="chn">중국어<br>
+        자기소개 : <br><textarea name="introduce" rows="18" cols="80"></textarea><br>
+        국적 : <select name="nation">
+            <option value="kr">대한민국</option>
+            <option value="us">미국</option>
+            <option value="jp">일본</option>
+            <option value="cn">중국</option>
+        </select><br><br>
+        <input type="submit" value="제출하기">
+        <input type="reset" value="초기화">
+    </form>
+</body>
+
+</html>
