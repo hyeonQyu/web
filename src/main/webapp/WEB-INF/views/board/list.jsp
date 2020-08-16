@@ -33,5 +33,7 @@
 	</tbody>
 </table>
 
+<a href="/board/write">게시글 작성</a>
+
 </body>
 </html>

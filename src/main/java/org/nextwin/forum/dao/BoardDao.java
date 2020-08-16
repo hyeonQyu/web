@@ -6,6 +6,8 @@ import org.nextwin.forum.dto.BoardDto;
 
 public interface BoardDao {
 
-	public List<BoardDto> getList() throws Exception; 
+	public List<BoardDto> getList() throws Exception;
+	
+	public void doWrite(BoardDto dto) throws Exception;
 	
 }

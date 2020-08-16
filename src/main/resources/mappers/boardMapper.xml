@@ -7,5 +7,9 @@
 	<select id="list" resultType="org.nextwin.forum.dto.BoardDto">
 		select bno, title, content, writer, regDate, viewCount from board
 	</select>
+	
+	<insert id="write" parameterType="org.nextwin.forum.dto.BoardDto">
+		insert into board(title, content, writer) values(#{title}, #{content}, #{writer})
+	</insert>
 
 </mapper>

@@ -20,4 +20,9 @@ public class BoardDaoImpl implements BoardDao {
 		return sqlSession.selectList(namespace + ".list");
 	}
 
+	@Override
+	public void doWrite(BoardDto dto) throws Exception {
+		sqlSession.insert(namespace + ".write", dto);
+	}
+
 }

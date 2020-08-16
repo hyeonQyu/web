@@ -8,4 +8,5 @@ public interface BoardService {
 	
 	public List<BoardDto> getList() throws Exception;
 	
+	public void doWrite(BoardDto dto) throws Exception;
 }
