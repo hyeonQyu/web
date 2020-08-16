@@ -9,4 +9,6 @@ public interface BoardService {
 	public List<BoardDto> getList() throws Exception;
 	
 	public void doWrite(BoardDto dto) throws Exception;
+	
+	public BoardDto getView(int bno) throws Exception;
 }

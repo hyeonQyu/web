@@ -10,4 +10,6 @@ public interface BoardDao {
 	
 	public void doWrite(BoardDto dto) throws Exception;
 	
+	public BoardDto getView(int bno) throws Exception;
+	
 }

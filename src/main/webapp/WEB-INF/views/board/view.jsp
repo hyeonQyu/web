@@ -5,23 +5,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시글 작성</title>
+<title>${view.title}</title>
 </head>
 <body>
 
 <form method="post">
 	
 	<label>제목</label>
-	<input type="text" name="title"><br/>
+	${view.title}<br/>
 	
 	<label>작성자</label>
-	<input type="text" name="writer"><br/>
+	${view.writer}<br/>
 	
 	<label>내용</label><br/>
-	<textarea rows="5" cols="50" name="content"></textarea><br/>
-	
-	<button type="submit">작성</button>
-	
+	${view.content}<br/>
+		
 </form>
 
 <a href="/board/list">목록으로</a>

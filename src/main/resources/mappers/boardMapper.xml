@@ -11,5 +11,9 @@
 	<insert id="write" parameterType="org.nextwin.forum.dto.BoardDto">
 		insert into board(title, content, writer) values(#{title}, #{content}, #{writer})
 	</insert>
+	
+	<select id="view" parameterType="int" resultType="org.nextwin.forum.dto.BoardDto">
+		select bno, title, content, writer, regDate, viewCount from board where bno = #{bno}
+	</select>
 
 </mapper>

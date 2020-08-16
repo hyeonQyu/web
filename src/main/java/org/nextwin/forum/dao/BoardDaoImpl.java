@@ -25,4 +25,9 @@ public class BoardDaoImpl implements BoardDao {
 		sqlSession.insert(namespace + ".write", dto);
 	}
 
+	@Override
+	public BoardDto getView(int bno) throws Exception {
+		return sqlSession.selectOne(namespace + ".view", bno);
+	}
+
 }

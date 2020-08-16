@@ -3,6 +3,7 @@ package org.nextwin.forum;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.nextwin.forum.dto.BoardDto;
 import org.nextwin.forum.service.BoardService;
@@ -33,6 +34,13 @@ public class BoardController {
 	public String write(BoardDto dto) throws Exception {
 		service.doWrite(dto);
 		return "redirect:/board/list";
+	}
+	
+	@RequestMapping("/view")
+	public void view(HttpServletRequest request, Model model) throws Exception {
+		int bno = Integer.parseInt(request.getParameter("bno"));
+		BoardDto dto = service.getView(bno);
+		model.addAttribute("view", dto);
 	}
 	
 }
