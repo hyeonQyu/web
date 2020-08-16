@@ -12,4 +12,6 @@ public interface BoardDao {
 	
 	public BoardDto getView(int bno) throws Exception;
 	
+	public void doModify(BoardDto dto) throws Exception;
+	
 }

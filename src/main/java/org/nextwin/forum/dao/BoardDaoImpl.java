@@ -30,4 +30,9 @@ public class BoardDaoImpl implements BoardDao {
 		return sqlSession.selectOne(namespace + ".view", bno);
 	}
 
+	@Override
+	public void doModify(BoardDto dto) throws Exception {
+		sqlSession.update(namespace + ".modify", dto);		
+	}
+
 }

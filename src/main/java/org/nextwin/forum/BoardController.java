@@ -43,4 +43,17 @@ public class BoardController {
 		model.addAttribute("view", dto);
 	}
 	
+	@RequestMapping("/modify")
+	public void modify(HttpServletRequest request, Model model) throws Exception {
+		int bno = Integer.parseInt(request.getParameter("bno"));
+		BoardDto dto = service.getView(bno);
+		model.addAttribute("view", dto);
+	}
+	
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public String modify(BoardDto dto) throws Exception {
+		service.doModify(dto);
+		return "redirect:/board/view?bno=" + dto.getBno();
+	}
+	
 }

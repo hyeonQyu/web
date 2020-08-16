@@ -29,4 +29,9 @@ public class BoardServiceImpl implements BoardService {
 		return dao.getView(bno);
 	}
 
+	@Override
+	public void doModify(BoardDto dto) throws Exception {
+		dao.doModify(dto);
+	}
+
 }

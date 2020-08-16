@@ -11,4 +11,7 @@ public interface BoardService {
 	public void doWrite(BoardDto dto) throws Exception;
 	
 	public BoardDto getView(int bno) throws Exception;
+	
+	public void doModify(BoardDto dto) throws Exception;
+	
 }
