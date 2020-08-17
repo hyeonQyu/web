@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/board/*")
@@ -54,6 +55,12 @@ public class BoardController {
 	public String modify(BoardDto dto) throws Exception {
 		service.doModify(dto);
 		return "redirect:/board/view?bno=" + dto.getBno();
+	}
+	
+	@RequestMapping(value = "/delete")
+	public String delete(@RequestParam("bno") int bno) throws Exception {
+		service.doDelete(bno);
+		return "redirect:/board/list";
 	}
 	
 }

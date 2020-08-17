@@ -14,4 +14,6 @@ public interface BoardDao {
 	
 	public void doModify(BoardDto dto) throws Exception;
 	
+	public void doDelete(int bno) throws Exception;
+	
 }

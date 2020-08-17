@@ -35,4 +35,9 @@ public class BoardDaoImpl implements BoardDao {
 		sqlSession.update(namespace + ".modify", dto);		
 	}
 
+	@Override
+	public void doDelete(int bno) throws Exception {
+		sqlSession.delete(namespace + ".delete", bno);		
+	}
+
 }

@@ -10,20 +10,20 @@
 <body>
 
 <form method="post">
-	
+
 	<label>제목</label>
 	${view.title}<br/>
-	
+
 	<label>작성자</label>
 	${view.writer}<br/>
-	
+
 	<label>내용</label><br/>
 	${view.content}<br/><br/>
-		
+
 </form>
 
 <div id="nav">
-	<a href="/board/modify?bno=${view.bno}">수정</a>
+	<a href="/board/modify?bno=${view.bno}">수정</a>&nbsp;&nbsp;<a href="/board/delete?bno=${view.bno}">삭제</a>
 	<%@ include file="../include/nav.jsp" %>
 </div>
 

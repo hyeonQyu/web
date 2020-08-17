@@ -11,13 +11,17 @@
 	<insert id="write" parameterType="org.nextwin.forum.dto.BoardDto">
 		insert into board(title, content, writer) values(#{title}, #{content}, #{writer})
 	</insert>
-	
+
 	<select id="view" parameterType="int" resultType="org.nextwin.forum.dto.BoardDto">
 		select bno, title, content, writer, regDate, viewCount from board where bno = #{bno}
 	</select>
-	
+
 	<update id="modify" parameterType="org.nextwin.forum.dto.BoardDto">
 		update board set title = #{title}, content = #{content}, writer = #{writer} where bno = #{bno}
 	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from board where bno = #{bno}
+	</delete>
 
 </mapper>
