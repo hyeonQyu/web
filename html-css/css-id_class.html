@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <style>
+        #header{
+            width:500px;
+            background:rgb(185, 84, 63);
+            border:5px solid rgb(14, 17, 226);
+            text-align:center;
+        }
+
+        #wrap{
+            width:500px;
+            background:rgba(131, 254, 44, 0.72);
+            border:2px solid rgb(106, 63, 247);
+            text-align:center;
+            overflow:hidden;
+        }
+
+        #content{
+            width:200px;
+            border:1px solid red;
+            float:left;
+        }
+
+        #side_banner{
+            border:1px solid red
+            float:left;
+        }
+
+        #footer{
+            clear:both;
+            width:500px;
+            background:rgb(171, 201, 5);
+            border:3px solid rgb(83, 27, 80);
+            text-align:center
+        }
+
+        .menu1{
+            color:rgb(213, 66, 153);
+            font-weight:bold;
+        }
+
+        .menu1, .menu3{
+            font-size:20px;
+        }
+
+        ul li.menu{
+            color:rgb(138, 122, 57)
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="header">
+        <h1>HEADER</h1>
+    </div>
+
+    <div id="wrap">
+        <div id="content">
+            <h2>content</h2>
+            <ul>
+                <li class="menu1">menu1</li>
+                <li class="menu2">menu2</li>
+                <li class="menu3">menu3</li>
+                <li class="menu4">menu4</li>
+            </ul>
+
+            <ul>
+                <li class="menu">menu1</li>
+                <li class="menu">menu2</li>
+                <li class="menu">menu3</li>
+                <li class="menu">menu4</li>
+            </ul>
+
+            <ol>
+                <li class="menu">menu1</li>
+                <li class="menu">menu2</li>
+                <li class="menu">menu3</li>
+                <li class="menu">menu4</li>
+            </ol>
+        </div>
+        <div id="side_banner">
+            <h2>banner</h2>
+            <a href="http://www.naver.com">Naver</a>
+        </div>
+    </div>
+
+    <div id="footer">
+        <h3>Footer</h3>
+    </div>
+
+</body>
+
+</html>
