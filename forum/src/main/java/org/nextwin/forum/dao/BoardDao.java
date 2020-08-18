@@ -2,7 +2,7 @@ package org.nextwin.forum.dao;
 
 import java.util.List;
 
-import org.nextwin.forum.dto.BoardDto;
+import org.nextwin.forum.domain.BoardDto;
 
 public interface BoardDao {
 
@@ -15,5 +15,9 @@ public interface BoardDao {
 	public void doModify(BoardDto dto) throws Exception;
 	
 	public void doDelete(int bno) throws Exception;
+	
+	public int getCount() throws Exception;
+	
+	public List<BoardDto> getListPage(int displayPost, int postNum) throws Exception;
 	
 }

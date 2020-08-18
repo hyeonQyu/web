@@ -5,7 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.nextwin.forum.dao.BoardDao;
-import org.nextwin.forum.dto.BoardDto;
+import org.nextwin.forum.domain.BoardDto;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -37,6 +37,16 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void doDelete(int bno) throws Exception {
 		dao.doDelete(bno);		
+	}
+
+	@Override
+	public int getCount() throws Exception {
+		return dao.getCount();
+	}
+
+	@Override
+	public List<BoardDto> getListPage(int displayPost, int postNum) throws Exception {
+		return dao.getListPage(displayPost, postNum);
 	}
 
 }

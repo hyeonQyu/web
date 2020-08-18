@@ -7,10 +7,12 @@
 </head>
 <body>
 <h1>
-	Hello world!  
+	Hello world!
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
-<p><a href="/board/list">게시물 목록</a></p>
+<div id="nav">
+	<%@ include file="include/nav.jsp" %>
+</div>
 </body>
 </html>

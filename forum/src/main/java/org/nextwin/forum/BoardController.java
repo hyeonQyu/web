@@ -5,7 +5,8 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
-import org.nextwin.forum.dto.BoardDto;
+import org.nextwin.forum.domain.BoardDto;
+import org.nextwin.forum.domain.Page;
 import org.nextwin.forum.service.BoardService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,7 +35,7 @@ public class BoardController {
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String write(BoardDto dto) throws Exception {
 		service.doWrite(dto);
-		return "redirect:/board/list";
+		return "redirect:/board/listPage";
 	}
 	
 	@RequestMapping("/view")
@@ -60,7 +61,22 @@ public class BoardController {
 	@RequestMapping(value = "/delete")
 	public String delete(@RequestParam("bno") int bno) throws Exception {
 		service.doDelete(bno);
-		return "redirect:/board/list";
+		return "redirect:/board/listPage";
+	}
+	
+	@RequestMapping("/listPage")
+	public void listPage(@RequestParam("num") int num, Model model) throws Exception {
+		// 총 게시물 개수
+		int total = service.getCount();
+		
+		Page page = new Page(num, total);
+		
+		List<BoardDto> list = null;
+		list = service.getListPage(page.getDisplayPost(), page.getPostNum());
+		
+		model.addAttribute("list", list);
+		model.addAttribute("page", page);
+		model.addAttribute("select", num);
 	}
 	
 }

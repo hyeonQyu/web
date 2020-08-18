@@ -1,4 +1,4 @@
-package org.nextwin.forum.dto;
+package org.nextwin.forum.domain;
 
 import java.sql.Timestamp;
 

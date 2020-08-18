@@ -29,6 +29,6 @@
 	</bean>
 		
 	<context:component-scan base-package="org.nextwin.forum.dao"/>
-	<context:component-scan base-package="org.nextwin.forum.dto"/>
+	<context:component-scan base-package="org.nextwin.forum.domain"/>
 	<context:component-scan base-package="org.nextwin.forum.service"/>
 </beans>

@@ -4,24 +4,32 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.nextwin.forum.mappers.board">
 
-	<select id="list" resultType="org.nextwin.forum.dto.BoardDto">
+	<select id="list" resultType="org.nextwin.forum.domain.BoardDto">
 		select bno, title, content, writer, regDate, viewCount from board
 	</select>
 	
-	<insert id="write" parameterType="org.nextwin.forum.dto.BoardDto">
+	<insert id="write" parameterType="org.nextwin.forum.domain.BoardDto">
 		insert into board(title, content, writer) values(#{title}, #{content}, #{writer})
 	</insert>
 
-	<select id="view" parameterType="int" resultType="org.nextwin.forum.dto.BoardDto">
+	<select id="view" parameterType="int" resultType="org.nextwin.forum.domain.BoardDto">
 		select bno, title, content, writer, regDate, viewCount from board where bno = #{bno}
 	</select>
 
-	<update id="modify" parameterType="org.nextwin.forum.dto.BoardDto">
+	<update id="modify" parameterType="org.nextwin.forum.domain.BoardDto">
 		update board set title = #{title}, content = #{content}, writer = #{writer} where bno = #{bno}
 	</update>
 	
 	<delete id="delete" parameterType="int">
 		delete from board where bno = #{bno}
 	</delete>
+	
+	<select id="count" resultType="int">
+		select count(bno) from board
+	</select>
+	
+	<select id="listPage" parameterType="hashMap" resultType="org.nextwin.forum.domain.BoardDto">
+		select bno, title, writer, regDate, viewCount from board order by bno desc limit #{displayPost}, #{postNum}
+	</select>
 
 </mapper>
