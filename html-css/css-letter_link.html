@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <style media="screen">
+        .wrap{
+            width: 800px;
+            margin: 0 auto;
+        }
+
+        .header{
+            border-bottom: 1px solid #cccccc
+        }
+
+        #histroy2:first-line, #histroy1:first-line{
+            font-weight: bold;
+            color: rgb(51, 114, 198);
+        }
+
+        #histroy2:first-letter, #histroy1:first-letter{
+            font-size: 2em;
+        }
+
+        .content p:first-child::selection{
+            background: rgb(117, 156, 135);
+            color: yellow;
+        }
+
+        .content a{
+            text-decoration: none;
+        }
+
+        .content a:after{
+            content: ' - ' attr(href);
+        }
+
+        .content li:not(.fa){
+            background: rgb(254, 228, 243)
+        }
+
+        .footer ul{
+            overflow: hidden;
+            border: 2px solid #cccccc;
+        }
+
+        .footer ul li{
+            list-style: none;
+            float: left;
+            padding: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="wrap">
+
+        <div class="header">
+            <h1>설립 개요</h1>
+        </div>
+
+        <div class="content">
+            <p>
+                중소기업 지원업무 전문성과 효율성을 확보하고 중소기업에 대한 기술, 경영, 인력 등의 종합지원체계를 구축함으로써 중소기업의 경쟁력 제고를 위해 설립된 서울산업진흥원은 중소기업의 자생력을 키우고 안정적인 경영여건을 조성하기 위하여 끊임없이 노력하고 있습니다.
+            </p>
+            <p id="histroy2">
+                2014 04월 09일<br>
+                서울산업진흥원 사명변경 06월 30일 서울산업진흥원 상암DMC 이전
+            </p>
+            <p id="histroy1">
+                2013 01월 12일<br>
+                다누리 시민청 개관 05월 09일 꿈꾸는 청년가게 명동점 개관 05월 10일 큐비드 광화문 개관
+            </p>
+            <ul>
+                <li><a href="http://www.sba.seoul.kr">서울산업진흥원</a></li>
+                <li><a href="http://wiz.center">위즈센터</a></li>
+                <li class="fa"><a href="http://www.google.com">구글</a></li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <ul>
+                <li><img src="http://www.sba.seoul.kr/kr/images/footer/f_logo.png"></li>
+                <li><img src="http://www.sba.seoul.kr/kr/images/footer/copyright.png"></li>
+            </ul>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
