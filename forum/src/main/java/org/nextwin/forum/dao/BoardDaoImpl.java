@@ -42,15 +42,20 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	@Override
-	public int getCount() throws Exception {
-		return sqlSession.selectOne(namespace + ".count");
+	public int getCount(String searchType, String keyword) throws Exception {
+		HashMap<String, String> data = new HashMap<>();
+		data.put("searchType", searchType);
+		data.put("keyword", keyword);
+		return sqlSession.selectOne(namespace + ".count", data);
 	}
 
 	@Override
-	public List<BoardDto> getListPage(int displayPost, int postNum) throws Exception {
-		HashMap<String, Integer> data = new HashMap<>();
+	public List<BoardDto> getListPage(int displayPost, int postNum, String searchType, String keyword) throws Exception {
+		HashMap<String, Object> data = new HashMap<>();
 		data.put("displayPost", displayPost);
 		data.put("postNum", postNum);
+		data.put("searchType", searchType);
+		data.put("keyword", keyword);
 		return sqlSession.selectList(namespace + ".listPage", data);
 	}
 

@@ -40,13 +40,13 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int getCount() throws Exception {
-		return dao.getCount();
+	public int getCount(String searchType, String keyword) throws Exception {
+		return dao.getCount(searchType, keyword);
 	}
 
 	@Override
-	public List<BoardDto> getListPage(int displayPost, int postNum) throws Exception {
-		return dao.getListPage(displayPost, postNum);
+	public List<BoardDto> getListPage(int displayPost, int postNum, String searchType, String keyword) throws Exception {
+		return dao.getListPage(displayPost, postNum, searchType, keyword);
 	}
 
 }

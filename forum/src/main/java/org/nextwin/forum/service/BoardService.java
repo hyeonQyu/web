@@ -16,8 +16,8 @@ public interface BoardService {
 	
 	public void doDelete(int bno) throws Exception;
 	
-	public int getCount() throws Exception;
+	public int getCount(String searchType, String keyword) throws Exception;
 	
-	public List<BoardDto> getListPage(int displayPost, int postNum) throws Exception;
+	public List<BoardDto> getListPage(int displayPost, int postNum, String searchType, String keyword) throws Exception;
 	
 }

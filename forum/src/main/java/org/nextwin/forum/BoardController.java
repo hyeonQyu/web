@@ -65,14 +65,17 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/listPage")
-	public void listPage(@RequestParam("num") int num, Model model) throws Exception {
+	public void listPage(@RequestParam("num") int num, 
+							@RequestParam(value = "searchType", required = false, defaultValue = "title") String searchType, 
+							@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
+							Model model) throws Exception {
 		// 총 게시물 개수
-		int total = service.getCount();
+		int total = service.getCount(searchType, keyword);
 		
-		Page page = new Page(num, total);
+		Page page = new Page(num, total, searchType, keyword);
 		
 		List<BoardDto> list = null;
-		list = service.getListPage(page.getDisplayPost(), page.getPostNum());
+		list = service.getListPage(page.getDisplayPost(), page.getPostNum(), searchType, keyword);
 		
 		model.addAttribute("list", list);
 		model.addAttribute("page", page);

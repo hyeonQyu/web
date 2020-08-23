@@ -24,12 +24,49 @@
 		delete from board where bno = #{bno}
 	</delete>
 	
-	<select id="count" resultType="int">
+	<select id="count" parameterType="hashMap" resultType="int">
 		select count(bno) from board
+		
+		<if test='searchType.equals("title")'>
+			where title like concat('%', #{keyword}, '%')
+		</if>
+		
+		<if test='searchType.equals("content")'>
+			where content like concat('%', #{keyword}, '%')
+		</if>
+		
+		<if test='searchType.equals("title_content")'>
+			where title like concat('%', #{keyword}, '%')
+			or content like concat('%', #{keyword}, '%')
+		</if>
+		
+		<if test='searchType.equals("writer")'>
+			where writer like concat('%', #{keyword}, '%')
+		</if>
 	</select>
 	
 	<select id="listPage" parameterType="hashMap" resultType="org.nextwin.forum.domain.BoardDto">
-		select bno, title, writer, regDate, viewCount from board order by bno desc limit #{displayPost}, #{postNum}
+		select bno, title, writer, regDate, viewCount from board 
+		
+		<if test='searchType.equals("title")'>
+			where title like concat('%', #{keyword}, '%')
+		</if>
+		
+		<if test='searchType.equals("content")'>
+			where content like concat('%', #{keyword}, '%')
+		</if>
+		
+		<if test='searchType.equals("title_content")'>
+			where title like concat('%', #{keyword}, '%')
+			or content like concat('%', #{keyword}, '%')
+		</if>
+		
+		<if test='searchType.equals("writer")'>
+			where writer like concat('%', #{keyword}, '%')
+		</if>
+		
+		
+		order by bno desc limit #{displayPost}, #{postNum}
 	</select>
 
 </mapper>

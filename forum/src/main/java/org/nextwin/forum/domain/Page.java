@@ -22,9 +22,17 @@ public class Page {
 	private boolean prev;
 	private boolean next;
 	
-	public Page(int num, int total) {
+	// 검색
+	String searchType;
+	String keyword;
+	String searchTypeKeyword;
+	
+	public Page(int num, int total, String searchType, String keyword) {
 		this.num = num;
 		this.total = total;
+		this.searchType = searchType;
+		this.keyword = keyword;
+		setSearchTypeKeyword();
 		
 		calc();
 	}
@@ -40,6 +48,13 @@ public class Page {
 		
 		prev = startPageNum == 1 ? false : true;
 		next = endPageNum * pageNumCount > total ? false : true;
+	}
+	
+	private void setSearchTypeKeyword() {
+		if(searchType.equals("") || keyword.equals(""))
+			searchTypeKeyword = "";
+		else
+			searchTypeKeyword = "&searchType=" + searchType + "&keyword=" + keyword;
 	}
 
 	public int getPageNum() {
@@ -68,6 +83,18 @@ public class Page {
 
 	public int getDisplayPost() {
 		return displayPost;
+	}
+
+	public String getSearchType() {
+		return searchType;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public String getSearchTypeKeyword() {
+		return searchTypeKeyword;
 	}
 	
 }
