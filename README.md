@@ -1,1 +1,34 @@
-# forum
+# web
+
+## 배경 채우기
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+        <meta charset="utf-8">
+        <title>practice</title>  
+        <link href="css/reset.css" rel="stylesheet" type="text/css"/>
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <div class="background__01"></div>
+    </body>
+</html>
+```
+img 태그는 스크롤이 생기기 때문에 배경에는 적합하지 않다. 그래서 새로운 스타일을 정의.
+```css
+.background__01{
+    width: 100%;
+    height: 100%;
+    background:url("../images/a.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+```
+css 파일에서 다음과 같이 background 속성에서 배경을 불러온다. background-size속성을 cover로 하여 꽉 찬 화면을 만들고 background-position속성을 center로 하여 중앙에 놓는다. 그러나 해당 div의 height가 0이기 때문에 height를 100%로 해도 0이다. 따라서 부모인 html과 body의 크기를 100%로 해줘야한다.
+```css
+html, body{
+    width: 100%;
+    height: 100%;
+}
+```
