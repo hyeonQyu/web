@@ -140,4 +140,4 @@ position을 absolute로 하여 자유롭게 배치할 수 있도록 하고 z-ind
     font-size: 16px;
 }
 ```
-SNS 표시를 위한 리스트를 inline-block으로 설정하여 가로로 배치되도록 하고 border-radius를 50%로 하여 원모양(width와 height가 같기 때문에)으로 만든다. <li> 사이 개행으로 발생한 공백을 없애기 위해 <li> 부모의 font-size를 0으로 한다. 이때 font-size는 상속되기 때문에 <li>의 font-size를 16px로 한다.
+SNS 표시를 위한 리스트를 inline-block으로 설정하여 가로로 배치되도록 하고 border-radius를 50%로 하여 원모양(width와 height가 같기 때문에)으로 만든다. li 사이 개행으로 발생한 공백을 없애기 위해 li 부모의 font-size를 0으로 한다. 이때 font-size는 상속되기 때문에 li의 font-size를 16px로 한다.
