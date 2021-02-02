@@ -51,3 +51,20 @@ JQuery를 사용, bxslider 플러그인이 있는 경로 설정.
 </script>
 ```
 bxSlider의 controls 설정을 false로 바꾸어 Prev, Next를 없애고, pager를 false로 하여 페이징 표시를 하지 않도록 한다. auto를 true로 설정하여 자동으로 배경이 바뀌도록 한다.
+
+## 배경에 도트 깔기
+```html
+<div class="overlay"></div>
+```
+slider 위에 overlay 추가
+```css
+.overlay{
+    width: 100%;
+    height: 100%;
+    background: url("../images/16.png");
+    position: absolute;
+    top: 0;
+    z-index: 10;
+}
+```
+position을 absolute로 하여 자유롭게 배치할 수 있도록 하고 z-index를 크게 하여 배경보다 앞에 있도록 한다.
