@@ -32,3 +32,22 @@ html, body{
     height: 100%;
 }
 ```
+
+## 배경 슬라이드
+```html
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="plugins/bxslider/js/jquery.bxslider.js" type="text/javascript"></script>
+```
+JQuery를 사용, bxslider 플러그인이 있는 경로 설정.
+```html
+<script>
+   $(document).ready(function(){
+      $('.slider').bxSlider({
+         controls:false,
+         pager:false,
+         auto:true
+      });
+   });
+</script>
+```
+bxSlider의 controls 설정을 false로 바꾸어 Prev, Next를 없애고, pager를 false로 하여 페이징 표시를 하지 않도록 한다. auto를 true로 설정하여 자동으로 배경이 바뀌도록 한다.
