@@ -68,3 +68,76 @@ slider 위에 overlay 추가
 }
 ```
 position을 absolute로 하여 자유롭게 배치할 수 있도록 하고 z-index를 크게 하여 배경보다 앞에 있도록 한다.
+
+## 컨텐츠 작성
+```html
+<div class="contents">
+   <p class="contents__name">Kim Hyeongyu</p>
+   <p class="contents__job">I'm web programmer & web designer</p>
+   <div class="contents__sns">
+      <ul class="contents__list">
+         <li>
+            <a href="#">
+               <i>facebook</i>                            
+            </a>
+         </li>
+         <li>
+            <a href="#">
+               <i>twitter</i>
+            </a>
+         </li>
+         <li>
+            <a href="#">
+               <i>instagram</i>
+            </a>
+         </li>
+         <li>
+            <a href="#">
+               <i>blog</i>
+            </a>
+         </li>
+      </ul>
+   </div>
+</div>
+```
+다음과 같이 이름, 직업, SNS 계정을 작성한다.
+```css
+.contents{
+    position: absolute;
+    top: 0;
+    z-index: 20;
+    text-align: center;
+}
+```
+도트 위에 나오도록 하기 위해 position과 z-index를 수정했다.
+```css
+.contents__name{
+    font-size: 64px;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.contents__job{
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 50px;
+}
+```
+폰트 크기와 색, 두께, 바깥 여백을 지정한다.
+```css
+.contents__list{
+    font-size: 0;
+}
+
+.contents__list > li{
+    display: inline-block;
+    width: 52px;
+    height: 52px;
+    border: 1px solid white;
+    border-radius: 50%;
+    font-size: 16px;
+}
+```
+SNS 표시를 위한 리스트를 inline-block으로 설정하여 가로로 배치되도록 하고 border-radius를 50%로 하여 원모양(width와 height가 같기 때문에)으로 만든다. <li> 사이 개행으로 발생한 공백을 없애기 위해 <li> 부모의 font-size를 0으로 한다. 이때 font-size는 상속되기 때문에 <li>의 font-size를 16px로 한다.
