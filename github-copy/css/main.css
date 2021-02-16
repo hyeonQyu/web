@@ -90,7 +90,7 @@ a{
     margin-bottom: 18px;
 }
 .summary__description{
-    font-size: 26px;
+    font-size: 25px;
     font-weight: 300;
     color: #767676;
     line-height: 1.5;
@@ -202,6 +202,12 @@ header .sub-menu a:hover{
 }
 .section--visual .inner{
     padding: 160px 0;
+    display: flex;
+}
+.section--visual .summary{
+    flex-grow: 1;
+    flex-basis: 0;
+    margin-right: 90px;
 }
 .section--visual .summary__title{
     color: #FFF;
@@ -216,6 +222,7 @@ header .sub-menu a:hover{
 }
 #sign-form{
     width: 340px;
+    margin-top: 16px;
 }
 #sign-form li{
     margin-bottom: 17px;
