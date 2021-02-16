@@ -283,8 +283,9 @@ header .sub-menu a:hover{
     max-width: 1200px;
 }
 .section--feature .tiles ul{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    /* display: grid;
+    grid-template-columns: repeat(4, 1fr); */
+
 }
 .section--feature .tiles li{
     padding: 34px 24px;
@@ -292,6 +293,8 @@ header .sub-menu a:hover{
     line-height: 1.5;
     margin-right: 1px solid #e5e5e5;
     box-sizing: border-box;
+    float: left;
+    width: 25%;
 }
 .section--feature .tiles li:last-child{
     border-right: none;
