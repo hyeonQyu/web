@@ -456,6 +456,12 @@ footer .logo:hover svg{
         margin-right: 0;
         justify-content: center;
     }
+    header .toggle{
+        display: none;
+    }
+    header .toggle.on{
+        display: block;
+    }
     #toggle-btn{
         background: url("../img/toggle-btn.svg");
         background-repeat: no-repeat;
