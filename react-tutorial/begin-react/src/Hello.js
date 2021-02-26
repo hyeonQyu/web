@@ -1,7 +1,10 @@
-function Hello({name, color}){
+function Hello({name, color, isSpecial}){
     return <div style={{
         color
-    }}>안녕하세요 {name}</div>;
+    }}>
+        {isSpecial ? <b>*</b> : null}
+        안녕하세요 {name}
+    </div>;
 }
 
 Hello.defaultProps = {
