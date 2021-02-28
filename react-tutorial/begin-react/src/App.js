@@ -1,19 +1,34 @@
-import Hello from './Hello';
+import {useRef} from 'react';
 import './App.css';
-import Wrapper from './Wrapper';
-import Counter from './Counter';
+import UserList from './UserList';
 
 function App() {
-  return (
-    <>
-    <Wrapper>
-      <Hello name="react" color="red" isSpecial/>
-      <Hello color="pink"/>
-    </Wrapper>
-    <Counter>
+  const users = [
+    {
+      id: 1,
+      username: 'one',
+      email: 'one@test.com',
+    },
+    {
+      id: 2,
+      username: 'two',
+      email: 'two@test.com',
+    },
+    {
+      id: 3,
+      username: 'three',
+      email: 'three@test.com',
+    }
+  ];
 
-    </Counter>
-    </>
+  const nextId = useRef(4);
+
+  const onCreate = () => {
+    nextId.current++;
+  }
+
+  return (
+    <UserList users={users}/>
   );
 }
 
