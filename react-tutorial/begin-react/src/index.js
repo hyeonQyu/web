@@ -4,8 +4,10 @@ import './index.css';
 import App from './App';
 import Counter from './Counter';
 import reportWebVitals from './reportWebVitals';
+import ContextSample from './ContextSample';
 
 ReactDOM.render(
+  // <ContextSample />,
   <React.StrictMode>
     <App />
   </React.StrictMode>,
