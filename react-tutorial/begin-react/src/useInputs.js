@@ -41,7 +41,7 @@ function useInputs(initialForm){
         dispatch({
             type: 'RESET_INPUTS',
         });
-    });
+    }, []);
 
     return [form, onChange, reset];
 }

@@ -5,12 +5,15 @@ import App from './App';
 import Counter from './Counter';
 import reportWebVitals from './reportWebVitals';
 import ContextSample from './ContextSample';
+import Hello from './Hello';
 
 ReactDOM.render(
   // <ContextSample />,
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  // <Hello name="react" color="orange" isSpecial/>,
+  <Counter/>,
+  // <React.StrictMode>
+  //   <App />
+  // </React.StrictMode>,
   document.getElementById('root')
 );
 
