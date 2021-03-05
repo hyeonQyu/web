@@ -1,4 +1,18 @@
 $blue: #228be6;
+$gray: #495057;
+$pink: #f06595;
+
+@mixin button-color($color){
+  background: $color;
+  // 마우스가 올라갔을 때
+  &:hover{
+    background: lighten($color, 10%);
+  }
+  // 클릭 되었을 때
+  &:active{
+    background: darken($color, 10%);
+  }
+}
 
 .Button {
   display: inline-flex;
@@ -28,15 +42,18 @@ $blue: #228be6;
     font-size: 0.875rem;
   }
 
-  background: $blue;
-  // 마우스가 올라갔을 때
-  &:hover{
-    background: lighten($blue, 10%);
+  &.blue{
+    @include button-color($blue);
   }
-  // 클릭 되었을 때
-  &:active{
-    background: darken($blue, 10%);
+
+  &.pink{
+    @include button-color($pink);
   }
+
+  &.gray{
+    @include button-color($gray);
+  }
+
   & + &{
     margin-left: 1rem;
   }
