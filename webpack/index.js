@@ -1,8 +1,9 @@
 import styles from './index.css';
+import $ from 'jquery';
 
 function component() {
     const element = document.createElement('div');
-    element.innerHTML = 'Hello Webpack';
+    element.innerHTML = 'Hello Webpack1';
 
     console.log(styles);
 
@@ -12,3 +13,4 @@ function component() {
 }
 
 document.body.appendChild(component());
+alert($(`.${styles.helloWebpack}`).length);
