@@ -51,15 +51,20 @@ const sizeStyles = css`
 
 const fullWidthStyle = css`
     ${(props) =>
-        props.fullWidth &&
-        css`
-            width: 100%;
-            justify-content: center;
-            & + & {
-                margin-left: 0;
-                margin-top: 1rem;
-            }
-        `}
+        props.fullWidth
+            ? css`
+                  width: 100%;
+                  justify-content: center;
+                  margin-top: 1rem;
+                  & + & {
+                      margin-left: 0;
+                  }
+              `
+            : css`
+                  & + & {
+                      margin-left: 1rem;
+                  }
+              `}
 `;
 
 const StyledButton = styled.button`
@@ -79,11 +84,6 @@ const StyledButton = styled.button`
     /* 크기 */
     height: 2.25rem;
     font-size: 1rem;
-
-    /* 기타 */
-    & + & {
-        margin-left: 1rem;
-    }
 
     /* 색상 */
     ${colorStyles}
