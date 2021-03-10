@@ -1,5 +1,10 @@
-function App() {
-    return <div className="App"></div>;
+import React, { Component } from 'react';
+import BookList from './components/BookList';
+
+class App extends Component {
+    render() {
+        return <BookList />;
+    }
 }
 
 export default App;
