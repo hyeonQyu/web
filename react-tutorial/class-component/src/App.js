@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import BookList from './components/BookList';
-import Books from './static_data/Books';
+import Counter from './Counter';
 
 class App extends Component {
     render() {
-        return <BookList books={Books} />;
+        return (
+            <div className="App">
+                <Counter />
+            </div>
+        );
     }
 }
 
