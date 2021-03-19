@@ -1,14 +1,22 @@
 import React, { Component } from 'react';
-import { List, ListItem } from '@material-ui/core';
+import { List, ListItem, Container } from '@material-ui/core';
+import BookListItem from './BookListItem';
 
 class BookList extends Component {
     render() {
+        const { books } = this.props;
+        const bookItems = books.map((book) => {
+            return (
+                <ListItem key={book.ISBN}>
+                    <BookListItem book={book} />
+                </ListItem>
+            );
+        });
+
         return (
-            <List>
-                <ListItem>Item01</ListItem>
-                <ListItem>Item02</ListItem>
-                <ListItem>Item03</ListItem>
-            </List>
+            <Container maxWidth="sm">
+                <List>{bookItems}</List>
+            </Container>
         );
     }
 }
