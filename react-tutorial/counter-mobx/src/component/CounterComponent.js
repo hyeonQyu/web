@@ -10,15 +10,15 @@ class CounterComponent extends Component {
 
         return (
             <div>
-                <Button variant="contained" color="primary" size="large">
+                <Button onClick={() => counterStore.decrement()} variant="contained" color="primary" size="large">
                     -
                 </Button>
 
                 <Box component="span" m={5}>
-                    {counterStore._count}
+                    {counterStore.count}
                 </Box>
 
-                <Button variant="contained" color="primary" size="large">
+                <Button onClick={() => counterStore.increment()} variant="contained" color="primary" size="large">
                     +
                 </Button>
             </div>
