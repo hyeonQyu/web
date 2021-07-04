@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 
-function TodoItem({ todo, onToggle }) {
+const TodoItem = React.memo(function ({ todo, onToggle }) {
     return (
         <li style={{ textDecoration: todo.done ? 'line-through' : 'none' }} onClick={() => onToggle(todo.id)}>
             {todo.text}
         </li>
     );
-}
+});
 
-function TodoList({ todos, onToggle }) {
+const TodoList = React.memo(function TodoList({ todos, onToggle }) {
     return (
         <ul>
             {todos.map((todo) => (
@@ -16,7 +16,7 @@ function TodoList({ todos, onToggle }) {
             ))}
         </ul>
     );
-}
+});
 
 function Todos({ todos, onCreate, onToggle }) {
     const [text, setText] = useState('');
@@ -38,4 +38,4 @@ function Todos({ todos, onCreate, onToggle }) {
     );
 }
 
-export default Todos;
+export default React.memo(Todos);
