@@ -1,12 +1,10 @@
-import NavBar from '../components/NavBar';
 import '../styles/globals.css';
+import Layout from '../components/Layout';
 
 export default function App({ Component, pageProps }) {
     return (
-        <div>
-            <NavBar />
+        <Layout>
             <Component {...pageProps} />
-            <span>app</span>
             <style jsx global>
                 {`
                     a {
@@ -14,6 +12,6 @@ export default function App({ Component, pageProps }) {
                     }
                 `}
             </style>
-        </div>
+        </Layout>
     );
 }
