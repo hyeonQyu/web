@@ -1,7 +1,21 @@
 import Seo from '../components/Seo';
-import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export default function Home({ results }) {
+    const router = useRouter();
+    // 아래 Link에서 한 방식과 같은 동작
+    const onClick = (id, title) => {
+        router.push(
+            {
+                pathname: `/movies/${id}`,
+                query: {
+                    title,
+                },
+            },
+            `/movies/${id}`,
+        );
+    };
     const size = 50;
 
     return (
@@ -9,9 +23,20 @@ export default function Home({ results }) {
             <Seo title={'Home'} />
             <h1>Hello</h1>
             {results.map(({ id, original_title }) => (
-                <div key={id}>
-                    <h4>{original_title}</h4>
-                </div>
+                <Link
+                    href={{
+                        pathname: `/movies/${id}`,
+                        query: {
+                            title: original_title,
+                        },
+                    }}
+                    as={`/movies/${id}`}
+                    key={id}
+                >
+                    <div>
+                        <h4>{original_title}</h4>
+                    </div>
+                </Link>
             ))}
             <img src={'/vercel.svg'} />
             <style jsx global>{`
