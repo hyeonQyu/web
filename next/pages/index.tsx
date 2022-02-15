@@ -6,15 +6,16 @@ export default function Home({ results }) {
     const router = useRouter();
     // 아래 Link에서 한 방식과 같은 동작
     const onClick = (id, title) => {
-        router.push(
-            {
-                pathname: `/movies/${id}`,
-                query: {
-                    title,
-                },
-            },
-            `/movies/${id}`,
-        );
+        // router.push(
+        //     {
+        //         pathname: `/movies/${id}`,
+        //         query: {
+        //             title,
+        //         },
+        //     },
+        //     `/movies/${id}`,
+        // );
+        router.push(`/movies/${title}/${id}`);
     };
     const size = 50;
 
@@ -24,13 +25,14 @@ export default function Home({ results }) {
             <h1>Hello</h1>
             {results.map(({ id, original_title }) => (
                 <Link
-                    href={{
-                        pathname: `/movies/${id}`,
-                        query: {
-                            title: original_title,
-                        },
-                    }}
-                    as={`/movies/${id}`}
+                    // href={{
+                    //     pathname: `/movies/${id}`,
+                    //     query: {
+                    //         title: original_title,
+                    //     },
+                    // }}
+                    // as={`/movies/${id}`}
+                    href={`/movies/${original_title}/${id}`}
                     key={id}
                 >
                     <div>
