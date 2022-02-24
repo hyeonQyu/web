@@ -1,9 +1,13 @@
-import { useState } from 'react';
-import { connect } from 'react-redux';
+import { useCallback, useState } from 'react';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { actionCreators } from '../store';
 import Todo from '../components/Todo';
 
-function Home({ todos, addTodo }) {
+function Home(/*{ todos, addTodo }*/) {
+    const todos = useSelector((state) => state);
+    const dispatch = useDispatch();
+    const addTodo = useCallback((text) => dispatch(actionCreators.addTodo(text)), [dispatch]);
+
     const [text, setText] = useState('');
 
     const onChange = (e) => {
@@ -32,14 +36,15 @@ function Home({ todos, addTodo }) {
     );
 }
 
-function mapStateToProps(state, ownProps) {
-    return { todos: state };
-}
+// function mapStateToProps(state, ownProps) {
+//     return { todos: state };
+// }
+//
+// function mapDispatchToProps(dispatch, ownProps) {
+//     return {
+//         addTodo: (text) => dispatch(actionCreators.addTodo(text)),
+//     };
+// }
 
-function mapDispatchToProps(dispatch, ownProps) {
-    return {
-        addTodo: (text) => dispatch(actionCreators.addTodo(text)),
-    };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+// export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default Home;
