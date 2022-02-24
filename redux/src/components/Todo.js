@@ -1,6 +1,7 @@
 import { connect, useDispatch } from 'react-redux';
 import { actionCreators } from '../store';
 import { useCallback } from 'react';
+import { Link } from 'react-router-dom';
 
 function Todo({ text, id /*, deleteTodo*/ }) {
     const dispatch = useDispatch();
@@ -8,7 +9,9 @@ function Todo({ text, id /*, deleteTodo*/ }) {
 
     return (
         <li>
-            {text} <button onClick={deleteTodo}>DEL</button>
+            <Link to={`/${id}`}>
+                {text} <button onClick={deleteTodo}>DEL</button>
+            </Link>
         </li>
     );
 }
