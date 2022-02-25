@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import { configureStore, createAction, createReducer } from '@reduxjs/toolkit';
+import { configureStore, createAction, createReducer, createSlice } from '@reduxjs/toolkit';
 
 // const ADD = 'ADD';
 // const DELETE = 'DELETE';
@@ -10,7 +10,7 @@ import { configureStore, createAction, createReducer } from '@reduxjs/toolkit';
 //         text,
 //     };
 // };
-const addTodo = createAction('ADD');
+// const addTodo = createAction('ADD');
 
 // const deleteTodo = (id) => {
 //     return {
@@ -18,7 +18,7 @@ const addTodo = createAction('ADD');
 //         id: parseInt(id),
 //     };
 // };
-const deleteTodo = createAction('DELETE');
+// const deleteTodo = createAction('DELETE');
 
 // const reducer = (state = [], action) => {
 //     switch (action.type) {
@@ -34,21 +34,34 @@ const deleteTodo = createAction('DELETE');
 //             return state;
 //     }
 // };
-const reducer = createReducer([], {
-    [addTodo]: (state, action) => {
-        state.push({ text: action.payload, id: Date.now() });
-    },
-    [deleteTodo]: (state, action) => {
-        return state.filter((todo) => todo.id !== action.payload);
+// const reducer = createReducer([], {
+//     [addTodo]: (state, action) => {
+//         state.push({ text: action.payload, id: Date.now() });
+//     },
+//     [deleteTodo]: (state, action) => {
+//         return state.filter((todo) => todo.id !== action.payload);
+//     },
+// });
+const todos = createSlice({
+    name: 'todoReducer',
+    initialState: [],
+    reducers: {
+        add: (state, action) => {
+            state.push({ text: action.payload, id: Date.now() });
+        },
+        remove: (state, action) => {
+            return state.filter((todo) => todo.id !== action.payload);
+        },
     },
 });
 
 // const store = createStore(reducer);
-const store = configureStore({ reducer });
+const store = configureStore({ reducer: todos.reducer });
 
-export const actionCreators = {
-    addTodo,
-    deleteTodo,
-};
+// export const actionCreators = {
+//     addTodo,
+//     deleteTodo,
+// };
+export const { add, remove } = todos.actions;
 
 export default store;

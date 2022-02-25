@@ -1,12 +1,14 @@
 import { useCallback, useState } from 'react';
 import { connect, useDispatch, useSelector } from 'react-redux';
-import { actionCreators } from '../store';
+// import { actionCreators } from '../store';
 import Todo from '../components/Todo';
+import { add } from '../store';
 
 function Home(/*{ todos, addTodo }*/) {
     const todos = useSelector((state) => state);
     const dispatch = useDispatch();
-    const addTodo = useCallback((text) => dispatch(actionCreators.addTodo(text)), [dispatch]);
+    // const addTodo = useCallback((text) => dispatch(actionCreators.addTodo(text)), [dispatch]);
+    const addTodo = useCallback((text) => dispatch(add(text)), [dispatch]);
 
     const [text, setText] = useState('');
 
