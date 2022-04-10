@@ -2,6 +2,7 @@ import './App.css';
 import useTabs from './hooks/useTabs';
 import useInput from './hooks/useInput';
 import useTitle from './hooks/useTitle';
+import useClick from './hooks/useClick';
 
 const content = [
     {
@@ -20,10 +21,13 @@ function App() {
     const { currentItem, changeItem } = useTabs(0, content);
     const setTitle = useTitle('Loading..');
     setTimeout(() => setTitle('Home'), 5000);
+    const title = useClick(() => {
+        console.log('hello');
+    });
 
     return (
         <div className="App">
-            <h1>hello</h1>
+            <h1 ref={title}>hello</h1>
             <input placeholder={'name'} {...name} />
             <br />
             {content.map((section, index) => (
