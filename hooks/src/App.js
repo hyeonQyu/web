@@ -3,6 +3,7 @@ import useTabs from './hooks/useTabs';
 import useInput from './hooks/useInput';
 import useTitle from './hooks/useTitle';
 import useClick from './hooks/useClick';
+import useConfirm from './hooks/useConfirm';
 
 const content = [
     {
@@ -24,6 +25,15 @@ function App() {
     const title = useClick(() => {
         console.log('hello');
     });
+    const confirmDelete = useConfirm(
+        'Are you sure',
+        () => {
+            console.log('deleting');
+        },
+        () => {
+            console.log('abort');
+        },
+    );
 
     return (
         <div className="App">
@@ -34,6 +44,7 @@ function App() {
                 <button onClick={() => changeItem(index)}>{section.tab}</button>
             ))}
             <div>{currentItem.content}</div>
+            <button onClick={confirmDelete}>delete the world</button>
         </div>
     );
 }
