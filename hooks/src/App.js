@@ -5,6 +5,7 @@ import useTitle from './hooks/useTitle';
 import useClick from './hooks/useClick';
 import useConfirm from './hooks/useConfirm';
 import usePreventLeave from './hooks/usePreventLeave';
+import useFadeIn from './hooks/useFadeIn';
 
 const content = [
     {
@@ -36,10 +37,12 @@ function App() {
         },
     );
     const { enablePrevent, disablePrevent } = usePreventLeave();
+    const fadeIn = useFadeIn(4, 2);
 
     return (
         <div className="App">
             <h1 ref={title}>hello</h1>
+            <h2 {...fadeIn}>fade in</h2>
             <input placeholder={'name'} {...name} />
             <br />
             {content.map((section, index) => (
