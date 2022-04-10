@@ -6,6 +6,7 @@ import useClick from './hooks/useClick';
 import useConfirm from './hooks/useConfirm';
 import usePreventLeave from './hooks/usePreventLeave';
 import useFadeIn from './hooks/useFadeIn';
+import useNetwork from './hooks/useNetwork';
 
 const content = [
     {
@@ -38,11 +39,15 @@ function App() {
     );
     const { enablePrevent, disablePrevent } = usePreventLeave();
     const fadeIn = useFadeIn(4, 2);
+    const online = useNetwork((online) => {
+        console.log(online ? 'online' : 'offline');
+    });
 
     return (
         <div className="App">
             <h1 ref={title}>hello</h1>
             <h2 {...fadeIn}>fade in</h2>
+            <h2>{online ? 'online' : 'offline'}</h2>
             <input placeholder={'name'} {...name} />
             <br />
             {content.map((section, index) => (
