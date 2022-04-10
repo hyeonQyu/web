@@ -8,6 +8,7 @@ import usePreventLeave from './hooks/usePreventLeave';
 import useFadeIn from './hooks/useFadeIn';
 import useNetwork from './hooks/useNetwork';
 import useScroll from './hooks/useScroll';
+import useNotification from './hooks/useNotification';
 
 const content = [
     {
@@ -44,6 +45,7 @@ function App() {
         console.log(online ? 'online' : 'offline');
     });
     const { y } = useScroll();
+    const triggerNotification = useNotification('hi hih i', { body: 'hello hello!' });
 
     return (
         <div className="App" style={{ height: '1000vh' }}>
@@ -60,6 +62,7 @@ function App() {
             <button onClick={confirmDelete}>delete the world</button>
             <button onClick={enablePrevent}>protect</button>
             <button onClick={disablePrevent}>unprotect</button>
+            <button onClick={triggerNotification}>notification</button>
         </div>
     );
 }
