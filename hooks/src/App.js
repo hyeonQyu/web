@@ -7,6 +7,7 @@ import useConfirm from './hooks/useConfirm';
 import usePreventLeave from './hooks/usePreventLeave';
 import useFadeIn from './hooks/useFadeIn';
 import useNetwork from './hooks/useNetwork';
+import useScroll from './hooks/useScroll';
 
 const content = [
     {
@@ -42,12 +43,14 @@ function App() {
     const online = useNetwork((online) => {
         console.log(online ? 'online' : 'offline');
     });
+    const { y } = useScroll();
 
     return (
-        <div className="App">
+        <div className="App" style={{ height: '1000vh' }}>
             <h1 ref={title}>hello</h1>
             <h2 {...fadeIn}>fade in</h2>
             <h2>{online ? 'online' : 'offline'}</h2>
+            <h2 style={{ position: 'fixed', color: y > 500 ? 'red' : 'blue' }}>scroll</h2>
             <input placeholder={'name'} {...name} />
             <br />
             {content.map((section, index) => (
