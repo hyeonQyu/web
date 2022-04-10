@@ -1,25 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
+import useInput from './hooks/useInput';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const maxLength = (value) => value.length <= 10;
+    const name = useInput('Mr.', maxLength);
+
+    return (
+        <div className="App">
+            <h1>hello</h1>
+            <input placeholder={'name'} {...name} />
+        </div>
+    );
 }
 
 export default App;
