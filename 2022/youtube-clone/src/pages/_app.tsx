@@ -3,6 +3,7 @@ import { ThemeProvider, Global } from '@emotion/react';
 import { useEffect, useState } from 'react';
 import { themeMode, ThemeType } from '@defines/theme';
 import { reset } from '@styles/reset';
+import { Layout } from '@components/common/layout';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [themeType, setThemeType] = useState<ThemeType>('light');
@@ -16,7 +17,9 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
       <Global styles={reset(theme)} />
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </ThemeProvider>
   );
 }
