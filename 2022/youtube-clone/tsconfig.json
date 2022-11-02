@@ -33,6 +33,9 @@
       ],
       "@stores/*": [
         "./stores/*"
+      ],
+      "@styles/*": [
+        "./styles/*"
       ]
     }
   },

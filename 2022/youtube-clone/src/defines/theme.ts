@@ -1,5 +1,5 @@
 export interface Theme {
-  fontColor: string;
+  color: string;
   background: string;
 }
 
@@ -11,11 +11,11 @@ export type ThemeMode = {
 
 export const themeMode: ThemeMode = {
   light: {
-    fontColor: '#000000',
+    color: '#000000',
     background: '#ffffff',
   },
   dark: {
-    fontColor: '#ffffff',
+    color: '#ffffff',
     background: '#000000',
   },
 };
