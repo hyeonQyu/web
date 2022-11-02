@@ -1,27 +1,44 @@
 import Seo from '../components/Seo';
-import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-const API_KEY = 'f342ac37edf90b21abb778c688c856d9';
-
-export default function Home() {
+export default function Home({ results }) {
+    const router = useRouter();
+    // 아래 Link에서 한 방식과 같은 동작
+    const onClick = (id, title) => {
+        // router.push(
+        //     {
+        //         pathname: `/movies/${id}`,
+        //         query: {
+        //             title,
+        //         },
+        //     },
+        //     `/movies/${id}`,
+        // );
+        router.push(`/movies/${title}/${id}`);
+    };
     const size = 50;
-    const [movies, setMovies] = useState([]);
-
-    useEffect(() => {
-        (async () => {
-            const { results } = await (await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)).json();
-            setMovies(results);
-        })();
-    }, []);
 
     return (
         <>
             <Seo title={'Home'} />
             <h1>Hello</h1>
-            {movies.map(({ id, original_title }) => (
-                <div key={id}>
-                    <h4>{original_title}</h4>
-                </div>
+            {results.map(({ id, original_title }) => (
+                <Link
+                    // href={{
+                    //     pathname: `/movies/${id}`,
+                    //     query: {
+                    //         title: original_title,
+                    //     },
+                    // }}
+                    // as={`/movies/${id}`}
+                    href={`/movies/${original_title}/${id}`}
+                    key={id}
+                >
+                    <div>
+                        <h4>{original_title}</h4>
+                    </div>
+                </Link>
             ))}
             <img src={'/vercel.svg'} />
             <style jsx global>{`
@@ -31,4 +48,13 @@ export default function Home() {
             `}</style>
         </>
     );
+}
+
+export async function getServerSideProps() {
+    const { results } = await (await fetch('http://localhost:3000/api/movies')).json();
+    return {
+        props: {
+            results,
+        },
+    };
 }
