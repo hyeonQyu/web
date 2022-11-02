@@ -11,11 +11,11 @@ export type ThemeMode = {
 
 export const themeMode: ThemeMode = {
   light: {
-    color: '#000000',
+    color: '#0f0f0f',
     background: '#ffffff',
   },
   dark: {
-    color: '#ffffff',
-    background: '#000000',
+    color: '#f1f1f1',
+    background: '#212121',
   },
 };
