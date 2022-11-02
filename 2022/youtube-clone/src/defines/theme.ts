@@ -3,12 +3,19 @@ export interface Theme {
   background: string;
 }
 
-export const lightTheme: Theme = {
-  fontColor: '#000000',
-  background: '#ffffff',
+export type ThemeType = 'light' | 'dark';
+
+export type ThemeMode = {
+  [key in ThemeType]: Theme;
 };
 
-export const darkTheme: Theme = {
-  fontColor: '#ffffff',
-  background: '#000000',
+export const themeMode: ThemeMode = {
+  light: {
+    fontColor: '#000000',
+    background: '#ffffff',
+  },
+  dark: {
+    fontColor: '#ffffff',
+    background: '#000000',
+  },
 };
