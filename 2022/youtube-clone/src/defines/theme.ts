@@ -12,7 +12,7 @@ export const themeMode: ThemeMode = {
     color: '#0f0f0f',
     background: '#ffffff',
     dividerColor: '#b1b1b1',
-    inputBackgroundColor: 'rgba(0, 0, 0, 0.05)',
+    componentBackgroundColor: 'rgba(0, 0, 0, 0.05)',
     placeholderColor: '#717171',
   },
   dark: {
@@ -20,7 +20,7 @@ export const themeMode: ThemeMode = {
     color: '#f1f1f1',
     background: '#212121',
     dividerColor: '#505050',
-    inputBackgroundColor: 'rgba(255,255,255,0.1)',
+    componentBackgroundColor: 'rgba(255,255,255,0.1)',
     placeholderColor: '#afafaf',
   },
 };

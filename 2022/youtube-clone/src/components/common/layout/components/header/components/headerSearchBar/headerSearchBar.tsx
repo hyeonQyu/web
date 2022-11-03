@@ -11,13 +11,13 @@ export interface HeaderSearchBarProps {}
 export function HeaderSearchBar(props: HeaderSearchBarProps) {
   const {} = props;
   const { handleClickCancelSearch } = useLayoutContext();
-  const { inputBackgroundColor, placeholderColor } = useTheme();
+  const { componentBackgroundColor, placeholderColor } = useTheme();
 
   const inputContainerStyle = css`
     width: calc(100% - 96px);
     height: ${headerSearchBarHeight}px;
     border-radius: 32px;
-    background: ${inputBackgroundColor};
+    background: ${componentBackgroundColor};
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -37,7 +37,7 @@ export function HeaderSearchBar(props: HeaderSearchBarProps) {
     width: ${headerSearchBarHeight}px;
     height: ${headerSearchBarHeight}px;
     border-radius: 50%;
-    background-color: ${inputBackgroundColor};
+    background-color: ${componentBackgroundColor};
     display: flex;
     align-items: center;
     justify-content: center;

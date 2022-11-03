@@ -1,3 +1,6 @@
+import Head from 'next/Head';
+import { ChipBarFilter } from '@components/page/home/chipBarFilter';
+
 export interface IndexProps {}
 
 function Index(props: IndexProps) {
@@ -5,7 +8,13 @@ function Index(props: IndexProps) {
 
   return (
     <>
-      <div></div>
+      <Head>
+        <title>홈 - Youtube</title>
+      </Head>
+
+      <>
+        <ChipBarFilter />
+      </>
     </>
   );
 }

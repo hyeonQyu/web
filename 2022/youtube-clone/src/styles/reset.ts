@@ -1,7 +1,7 @@
 import { css, Theme } from '@emotion/react';
 
 export const reset = (theme: Theme) => {
-  const { color, background, inputBackgroundColor } = theme;
+  const { color, background, componentBackgroundColor } = theme;
   return css`
     body {
       background: ${background};
@@ -100,7 +100,7 @@ export const reset = (theme: Theme) => {
       color: ${color};
     }
     input {
-      background: ${inputBackgroundColor};
+      background: ${componentBackgroundColor};
       outline: none;
     }
     /* HTML5 display-role reset for older browsers */
