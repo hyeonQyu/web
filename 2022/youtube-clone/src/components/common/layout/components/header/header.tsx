@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import { headerHeight } from '@defines/layout';
-import { HeaderBrowse } from '@components/common/layout/header/components/headerBrowse/headerBrowse';
-import { HeaderSearchBar } from '@components/common/layout/header/components/headerSearchBar/headerSearchBar';
+import { HeaderBrowse } from '@components/common/layout/components/header/components/headerBrowse';
+import { HeaderSearchBar } from '@components/common/layout/components/header/components/headerSearchBar/headerSearchBar';
 
 export interface HeaderProps {}
 
