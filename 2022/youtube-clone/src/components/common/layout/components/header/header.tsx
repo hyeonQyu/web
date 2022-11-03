@@ -2,11 +2,13 @@ import { css, useTheme } from '@emotion/react';
 import { headerHeight } from '@defines/layout';
 import { HeaderBrowse } from '@components/common/layout/components/header/components/headerBrowse';
 import { HeaderSearchBar } from '@components/common/layout/components/header/components/headerSearchBar/headerSearchBar';
+import { useLayoutContext } from '@components/common/layout/context/layoutContext';
 
 export interface HeaderProps {}
 
 export function Header(props: HeaderProps) {
   const {} = props;
+  const { isSearching } = useLayoutContext();
   const { background } = useTheme();
 
   const headerStyle = css`
@@ -18,10 +20,5 @@ export function Header(props: HeaderProps) {
     align-items: center;
   `;
 
-  return (
-    <header css={headerStyle}>
-      {/*<HeaderBrowse />*/}
-      <HeaderSearchBar />
-    </header>
-  );
+  return <header css={headerStyle}>{isSearching ? <HeaderSearchBar /> : <HeaderBrowse />}</header>;
 }

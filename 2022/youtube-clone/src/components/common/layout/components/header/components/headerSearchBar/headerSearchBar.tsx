@@ -4,11 +4,13 @@ import { css, useTheme } from '@emotion/react';
 import { IconSearch } from '@icons/iconSearch';
 import { headerSearchBarHeight } from '@defines/layout';
 import { IconMicrophone } from '@icons/iconMicrophone';
+import { useLayoutContext } from '@components/common/layout/context/layoutContext';
 
 export interface HeaderSearchBarProps {}
 
 export function HeaderSearchBar(props: HeaderSearchBarProps) {
   const {} = props;
+  const { handleClickCancelSearch } = useLayoutContext();
   const { inputBackgroundColor, placeholderColor } = useTheme();
 
   const inputContainerStyle = css`
@@ -44,7 +46,7 @@ export function HeaderSearchBar(props: HeaderSearchBarProps) {
 
   return (
     <>
-      <IconButton>
+      <IconButton onClick={handleClickCancelSearch}>
         <IconBackArrow />
       </IconButton>
 
