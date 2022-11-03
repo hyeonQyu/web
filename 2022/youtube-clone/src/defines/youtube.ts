@@ -24,3 +24,8 @@ export interface Thumbnail {
   width: number;
   height: number;
 }
+
+export interface PageInfo {
+  totalResults: number;
+  resultsPerPage: number;
+}

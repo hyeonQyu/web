@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { YoutubeVideo } from '@defines/youtube';
+import { PageInfo, YoutubeVideo } from '@defines/youtube';
 import axios from 'axios';
 
 export interface VideosReq {
@@ -12,10 +12,7 @@ export interface VideosRes {
   items: YoutubeVideo[];
   kind: string;
   nextPageToken: string;
-  pageInfo: {
-    totalResults: number;
-    resultsPerPage: number;
-  };
+  pageInfo: PageInfo;
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<VideosRes>) {
