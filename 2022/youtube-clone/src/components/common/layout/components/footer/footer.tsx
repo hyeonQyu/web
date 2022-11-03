@@ -28,7 +28,7 @@ export function Footer(props: FooterProps) {
     <footer css={footerStyle}>
       <nav css={navStyle}>
         <FooterTab.List>
-          <FooterTab.Item href={'/'} icon={<IconHome filled />} label={'홈'} />
+          <FooterTab.Item href={'/'} icon={<IconHome />} label={'홈'} />
           <FooterTab.Item href={'/shorts'} icon={<IconShorts />} label={'Shorts'} />
           <FooterTab.Item href={'/library'} icon={<IconLibrary />} label={'보관함'} />
         </FooterTab.List>
