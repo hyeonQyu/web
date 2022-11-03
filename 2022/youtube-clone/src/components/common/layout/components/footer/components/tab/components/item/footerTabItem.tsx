@@ -1,13 +1,17 @@
-import { ReactNode } from 'react';
 import { css } from '@emotion/react';
+import Link from 'next/link';
+import { useFooterTabItemInner } from '@components/common/layout/components/footer/components/tab/components/item/hooks/useFooterTabItemInner';
+import { FooterNavTabIcon } from '@defines/layout';
 
 export interface FooterTabItemProps {
-  icon: ReactNode;
+  icon: FooterNavTabIcon;
   label: string;
+  href: string;
 }
 
 export function FooterTabItem(props: FooterTabItemProps) {
-  const { icon, label } = props;
+  const { label, href } = props;
+  const { renderingIcon } = useFooterTabItemInner(props);
 
   const tabStyle = css`
     width: 100%;
@@ -28,11 +32,13 @@ export function FooterTabItem(props: FooterTabItemProps) {
   `;
 
   return (
-    <li css={tabStyle}>
-      <div>
-        <div css={iconStyle}>{icon}</div>
-        <p css={labelStyle}>{label}</p>
-      </div>
-    </li>
+    <Link href={href} css={tabStyle}>
+      <li>
+        <div>
+          <div css={iconStyle}>{renderingIcon}</div>
+          <p css={labelStyle}>{label}</p>
+        </div>
+      </li>
+    </Link>
   );
 }
