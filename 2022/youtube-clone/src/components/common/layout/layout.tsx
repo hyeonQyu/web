@@ -1,18 +1,19 @@
 import { Header } from '@components/common/layout/components/header';
 import { Footer } from '@components/common/layout/components/footer';
-import { PropsWithChildren } from 'react';
+import { StrictPropsWithChildren } from 'react';
 import { LayoutContext } from './context/layoutContext';
 import { useLayoutInner } from '@components/common/layout/hooks/useLayoutInner';
+import { Main } from '@components/common/layout/components/main';
 
 export interface LayoutProps {}
 
-export function Layout(props: PropsWithChildren<LayoutProps>) {
+export function Layout(props: StrictPropsWithChildren<LayoutProps>) {
   const { children } = props;
 
   return (
     <LayoutContext.Provider value={useLayoutInner({})}>
       <Header />
-      <main style={{ background: 'white', width: '100%', height: '100%' }}>{children}</main>
+      <Main>{children}</Main>
       <Footer />
     </LayoutContext.Provider>
   );
