@@ -3,6 +3,9 @@ import { css, Theme } from '@emotion/react';
 export const reset = (theme: Theme) => {
   const { color, background, inputBackgroundColor } = theme;
   return css`
+    body {
+      background: ${background};
+    }
     html,
     body,
     div,
@@ -95,7 +98,6 @@ export const reset = (theme: Theme) => {
       box-sizing: border-box;
       font-family: Pretendard, serif;
       color: ${color};
-      background: ${background};
     }
     input {
       background: ${inputBackgroundColor};
