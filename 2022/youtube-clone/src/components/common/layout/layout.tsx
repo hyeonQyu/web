@@ -1,4 +1,4 @@
-import { Header } from '@components/common/components/header';
+import { Header } from '@components/common/layout/header';
 
 export interface LayoutProps {}
 
