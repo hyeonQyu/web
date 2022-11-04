@@ -27,6 +27,7 @@ export function ChipBarFilterChip(props: ChipBarFilterChipProps) {
 
   const textStyle = css`
     padding-left: ${icon ? '4px' : 0};
+    font-size: 1.4rem;
   `;
 
   return (

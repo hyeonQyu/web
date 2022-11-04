@@ -1,9 +1,10 @@
 import type { AppProps } from 'next/app';
 import { ThemeProvider, Global } from '@emotion/react';
-import { reset } from '@styles/reset';
+import { resetStyle } from '@styles/reset';
 import { Layout } from '@components/common/layout';
 import { useCustomTheme } from '@hooks/common/useCustomTheme';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+import { globalStyle } from '@styles/global';
 
 export default function App({ Component, pageProps }: AppProps) {
   const { theme } = useCustomTheme();
@@ -12,7 +13,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
-        <Global styles={reset(theme)} />
+        <Global styles={[resetStyle(theme), globalStyle(theme)]} />
         <Layout>
           <Component {...pageProps} />
         </Layout>
