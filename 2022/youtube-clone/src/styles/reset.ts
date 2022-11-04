@@ -1,9 +1,11 @@
-import { Theme } from '@defines/theme';
-import { css } from '@emotion/react';
+import { css, Theme } from '@emotion/react';
 
 export const reset = (theme: Theme) => {
-  const { color, background } = theme;
+  const { color, background, componentBackgroundColor } = theme;
   return css`
+    body {
+      background: ${background};
+    }
     html,
     body,
     div,
@@ -96,7 +98,10 @@ export const reset = (theme: Theme) => {
       box-sizing: border-box;
       font-family: Pretendard, serif;
       color: ${color};
-      background: ${background};
+    }
+    input {
+      background: ${componentBackgroundColor};
+      outline: none;
     }
     /* HTML5 display-role reset for older browsers */
     article,
