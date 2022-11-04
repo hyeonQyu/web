@@ -5,11 +5,12 @@ import { headerHeight } from '@defines/layout';
 import { useHomePageContext } from '@contexts/page/home/homePageContext';
 import { zIndex } from '@defines/zIndex';
 
+export const chipBarFilterHeight = 50;
+
 export interface ChipBarFilterProps {}
 
 export function ChipBarFilter(props: ChipBarFilterProps) {
   const {} = props;
-  const chipBarFilterHeight = 50;
   const { isChipBarFilterVisible } = useHomePageContext();
   const { background, dividerColor } = useTheme();
 

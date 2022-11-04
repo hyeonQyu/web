@@ -1,11 +1,13 @@
 import { useQueryVideos } from '@hooks/queries/useQueryVideos';
 import useScroll from '@hooks/common/useScroll';
 import { useState } from 'react';
+import { YoutubeVideo } from '@defines/youtube';
 
 export interface IUseHomePageParams {}
 
 export interface IUseHomePage {
   isChipBarFilterVisible: boolean;
+  videos: YoutubeVideo[];
 }
 
 export function useHomePage(params: IUseHomePageParams): IUseHomePage {
@@ -18,7 +20,7 @@ export function useHomePage(params: IUseHomePageParams): IUseHomePage {
   });
 
   const {
-    data: { items, nextPageToken, pageInfo } = {
+    data: { items: videos, nextPageToken, pageInfo } = {
       items: [],
       nextPageToken: '',
       pageInfo: {
@@ -34,5 +36,6 @@ export function useHomePage(params: IUseHomePageParams): IUseHomePage {
 
   return {
     isChipBarFilterVisible,
+    videos,
   };
 }
