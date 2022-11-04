@@ -25,7 +25,7 @@ export function ChipBarFilter(props: ChipBarFilterProps) {
     gap: 12px;
     white-space: nowrap;
     padding: 0 12px;
-    top: ${headerHeight}px;
+    top: ${headerHeight - 2}px;
     transition: top 225ms cubic-bezier(0, 0, 0.2, 1);
     z-index: ${zIndex.chipBarFilter};
 

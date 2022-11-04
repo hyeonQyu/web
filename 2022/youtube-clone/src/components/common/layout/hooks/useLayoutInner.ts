@@ -23,13 +23,32 @@ export interface IUseLayoutInner {
   handleClickCancelSearch: () => void;
 }
 
+let scrollY = Number.MAX_VALUE;
+
 export function useLayoutInner(params: IUseLayoutInnerParams): IUseLayoutInner {
   const {} = params;
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
 
+  const handleChangeHeaderVisible = () => {
+    const scrollUp = (windowScrollY: number) => {
+      setIsHeaderVisible(true);
+      scrollY = windowScrollY;
+    };
+    const scrollDown = (windowScrollY: number) => {
+      setIsHeaderVisible(false);
+      scrollY = windowScrollY;
+    };
+
+    const windowScrollY = window.scrollY;
+    if (scrollY < windowScrollY) {
+      scrollDown(windowScrollY);
+    } else if (scrollY > windowScrollY) {
+      scrollUp(windowScrollY);
+    }
+  };
+
   useScroll({
-    onScrollDown: () => setIsHeaderVisible(false),
-    onScrollUp: () => setIsHeaderVisible(true),
+    onScroll: handleChangeHeaderVisible,
   });
 
   const [isSearching, setIsSearching] = useState(false);
