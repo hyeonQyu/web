@@ -10,8 +10,10 @@ export interface LayoutProps {}
 export function Layout(props: StrictPropsWithChildren<LayoutProps>) {
   const { children } = props;
 
+  const layoutContext = useLayoutInner({});
+
   return (
-    <LayoutContext.Provider value={useLayoutInner({})}>
+    <LayoutContext.Provider value={layoutContext}>
       <Header />
       <Main>{children}</Main>
       <Footer />

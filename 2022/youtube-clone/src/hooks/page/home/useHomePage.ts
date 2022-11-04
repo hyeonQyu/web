@@ -1,11 +1,21 @@
 import { useQueryVideos } from '@hooks/queries/useQueryVideos';
+import useScroll from '@hooks/common/useScroll';
+import { useState } from 'react';
 
 export interface IUseHomePageParams {}
 
-export interface IUseHomePage {}
+export interface IUseHomePage {
+  isChipBarFilterVisible: boolean;
+}
 
 export function useHomePage(params: IUseHomePageParams): IUseHomePage {
   const {} = params;
+  const [isChipBarFilterVisible, setIsChipBarFilterVisible] = useState(true);
+
+  useScroll({
+    onScrollDown: () => setIsChipBarFilterVisible(false),
+    onScrollUp: () => setIsChipBarFilterVisible(true),
+  });
 
   const {
     data: { items, nextPageToken, pageInfo } = {
@@ -22,5 +32,7 @@ export function useHomePage(params: IUseHomePageParams): IUseHomePage {
     },
   });
 
-  return {};
+  return {
+    isChipBarFilterVisible,
+  };
 }

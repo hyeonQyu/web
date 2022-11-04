@@ -39,6 +39,9 @@
       ],
       "@icons/*": [
         "./icons/*"
+      ],
+      "@contexts/*": [
+        "./contexts/*"
       ]
     }
   },

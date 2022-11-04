@@ -1,16 +1,21 @@
 import { css, useTheme } from '@emotion/react';
 import { ChipBarFilterChip } from '@components/page/home/chipBarFilter/components/chipBarFilterChip';
 import { IconCompass } from '@icons/iconCompass';
+import { headerHeight } from '@defines/layout';
+import { useHomePageContext } from '@contexts/page/home/homePageContext';
+import { zIndex } from '@defines/zIndex';
 
 export interface ChipBarFilterProps {}
 
 export function ChipBarFilter(props: ChipBarFilterProps) {
   const {} = props;
+  const chipBarFilterHeight = 50;
+  const { isChipBarFilterVisible } = useHomePageContext();
   const { background, dividerColor } = useTheme();
 
   const containerStyle = css`
     width: 100%;
-    height: 50px;
+    height: ${chipBarFilterHeight}px;
     position: fixed;
     background-color: ${background};
     overflow-x: scroll;
@@ -20,11 +25,19 @@ export function ChipBarFilter(props: ChipBarFilterProps) {
     gap: 12px;
     white-space: nowrap;
     padding: 0 12px;
+    top: ${headerHeight}px;
+    transition: top 225ms cubic-bezier(0, 0, 0.2, 1);
+    z-index: ${zIndex.chipBarFilter};
 
     -ms-overflow-style: none;
     &::-webkit-scrollbar {
       display: none;
     }
+  `;
+
+  const containerInvisibleStyle = css`
+    top: -${chipBarFilterHeight}px;
+    transition: top 195ms cubic-bezier(0.4, 0, 1, 1);
   `;
 
   const dividerStyle = css`
@@ -34,7 +47,7 @@ export function ChipBarFilter(props: ChipBarFilterProps) {
   `;
 
   return (
-    <div css={containerStyle}>
+    <div css={[containerStyle, !isChipBarFilterVisible && containerInvisibleStyle]}>
       <ChipBarFilterChip id={'explore'} label={'탐색'} icon={<IconCompass />} />
       <div css={dividerStyle} />
       <ChipBarFilterChip id={'all'} label={'전체'} />
