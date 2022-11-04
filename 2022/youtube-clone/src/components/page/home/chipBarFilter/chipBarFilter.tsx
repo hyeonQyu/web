@@ -12,13 +12,12 @@ export interface ChipBarFilterProps {}
 export function ChipBarFilter(props: ChipBarFilterProps) {
   const {} = props;
   const { isChipBarFilterVisible } = useHomePageContext();
-  const { background, dividerColor } = useTheme();
+  const { dividerColor } = useTheme();
 
   const containerStyle = css`
     width: 100%;
     height: ${chipBarFilterHeight}px;
     position: fixed;
-    background-color: ${background};
     overflow-x: scroll;
     overflow-y: hidden;
     display: flex;

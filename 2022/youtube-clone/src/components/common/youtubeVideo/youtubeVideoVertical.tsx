@@ -1,7 +1,7 @@
 import { YoutubeVideo } from '@defines/youtube';
 import Link from 'next/link';
 import { useYoutubeVideoInner } from '@components/common/youtubeVideo/hooks/useYoutubeVideoInner';
-import { css, useTheme } from '@emotion/react';
+import { css } from '@emotion/react';
 import { IconKebab } from '@icons/iconKebab';
 
 export interface YoutubeVideoVerticalProps {
@@ -16,11 +16,8 @@ export function YoutubeVideoVertical(props: YoutubeVideoVerticalProps) {
 
   const { href, timeDifferenceText } = useYoutubeVideoInner(props);
 
-  const { background } = useTheme();
-
   const containerStyle = css`
     width: 100%;
-    background-color: ${background};
   `;
 
   const detailsStyle = css`
