@@ -22,6 +22,7 @@ export function ChipBarFilterChip(props: ChipBarFilterChipProps) {
     align-items: center;
     justify-content: center;
     background-color: ${componentBackgroundColor};
+    border-radius: 8px;
   `;
 
   const textStyle = css`
