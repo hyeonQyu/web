@@ -22,5 +22,6 @@ export function useQueryVideos(params: IUseQueryVideosParams): UseQueryResult<Vi
   return useQuery({
     queryKey: [url, pageToken, maxResults],
     queryFn: getVideos,
+    refetchOnWindowFocus: false,
   });
 }

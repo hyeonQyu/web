@@ -24,5 +24,6 @@ export function useQueryChannels(params: IUseQueryChannelsParams): UseQueryResul
   return useQuery({
     queryKey: [url, ...ids],
     queryFn: getChannels,
+    refetchOnWindowFocus: false,
   });
 }

@@ -9,7 +9,6 @@ export interface IndexProps {}
 function Index(props: IndexProps) {
   const {} = props;
   const homePageContext = useHomePage({});
-  const {} = homePageContext;
 
   return (
     <>

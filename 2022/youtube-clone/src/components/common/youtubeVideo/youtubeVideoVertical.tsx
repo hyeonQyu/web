@@ -10,7 +10,7 @@ export interface YoutubeVideoVerticalProps {
 
 export function YoutubeVideoVertical(props: YoutubeVideoVerticalProps) {
   const {
-    video: { snippet },
+    video: { snippet, channelThumbnail },
   } = props;
   const { title, thumbnails, channelTitle } = snippet;
 
@@ -31,10 +31,13 @@ export function YoutubeVideoVertical(props: YoutubeVideoVerticalProps) {
   const channelProfileStyle = css`
     width: 40px;
     height: 40px;
+    border-radius: 50%;
+    background: url(${channelThumbnail.url});
+    background-size: contain;
   `;
 
   const informationStyle = css`
-    width: 100%;
+    flex: 1;
 
     p {
       opacity: 0.6;

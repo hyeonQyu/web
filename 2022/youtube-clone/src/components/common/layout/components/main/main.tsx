@@ -10,7 +10,6 @@ export function Main(props: StrictPropsWithChildren<MainProps>) {
   const mainStyle = css`
     width: 100%;
     height: calc(100% - ${headerHeight}px);
-    background-color: white;
   `;
 
   return <main css={mainStyle}>{children}</main>;
