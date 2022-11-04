@@ -3,8 +3,6 @@ import useScroll from '@hooks/common/useScroll';
 import { useEffect, useState } from 'react';
 import { ChannelSnippetById, YoutubeVideo } from '@defines/youtube';
 import { useQueryChannels } from '@hooks/queries/useQueryChannels';
-import axios from 'axios';
-import { ChannelsRes } from '@pages/api/channels';
 
 export interface IUseHomePageParams {}
 
@@ -24,6 +22,7 @@ export function useHomePage(params: IUseHomePageParams): IUseHomePage {
   const {} = params;
   const [isChipBarFilterVisible, setIsChipBarFilterVisible] = useState(true);
   const [accVideos, setAccVideos] = useState<YoutubeVideo[]>([]);
+  const [channelIds, setChannelIds] = useState<string[]>([]);
   const [pageToken, setPageToken] = useState<string>();
 
   useScroll({
@@ -47,36 +46,52 @@ export function useHomePage(params: IUseHomePageParams): IUseHomePage {
     },
   });
 
+  const {
+    data: { items: channels = [] } = {
+      item: [],
+    },
+    refetch: refetchChannels,
+  } = useQueryChannels({
+    params: {
+      ids: channelIds,
+    },
+    queryOption: {
+      enabled: false,
+    },
+  });
+
+  // 조회된 유튜브 비디오로부터 채널 아이디 목록 추출
   useEffect(() => {
-    const channelIds = Array.from(new Set(videos.map(({ snippet: { channelId } }) => channelId)));
+    setChannelIds(Array.from(new Set(videos.map(({ snippet: { channelId } }) => channelId))));
+  }, [videos]);
 
+  // 채널 목록 불러오기
+  useEffect(() => {
     (async () => {
-      const {
-        data: { items: channels = [] },
-      } = await axios.get<ChannelsRes>('/api/channels', {
-        params: {
-          id: channelIds.join(),
-        },
-      });
+      await refetchChannels();
+    })();
+  }, [channelIds]);
 
-      if (channels.length === 0) {
-        return;
-      }
+  // 비디오 목록에 채널 썸네일 정보 추가
+  useEffect(() => {
+    if (channels.length === 0) {
+      return;
+    }
 
-      const channelSnippetById: ChannelSnippetById = channels.reduce((acc, { id, snippet }) => {
-        return {
-          ...acc,
-          [id]: snippet,
-        };
-      }, {});
+    const channelSnippetById: ChannelSnippetById = channels.reduce((acc, { id, snippet }) => {
+      return {
+        ...acc,
+        [id]: snippet,
+      };
+    }, {});
 
-      const youtubeVideos: YoutubeVideo[] = videos.map((video) => ({
+    setAccVideos(
+      videos.map((video) => ({
         ...video,
         channelThumbnail: channelSnippetById[video.snippet.channelId].thumbnails.default,
-      }));
-      setAccVideos(youtubeVideos);
-    })();
-  }, [videos]);
+      })),
+    );
+  }, [channels]);
 
   return {
     isChipBarFilterVisible,
