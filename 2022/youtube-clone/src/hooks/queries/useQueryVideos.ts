@@ -9,14 +9,18 @@ export interface IUseQueryVideosParams {
 export function useQueryVideos(params: IUseQueryVideosParams): UseQueryResult<VideosRes, AxiosError> {
   const { params: queryParams } = params;
   const { pageToken, maxResults } = queryParams;
+  const url = 'api/videos';
 
   const getVideos = async () => {
     return (
-      await axios.get('api/videos', {
+      await axios.get(url, {
         params: queryParams,
       })
     ).data;
   };
 
-  return useQuery({ queryKey: ['videos', pageToken, maxResults], queryFn: getVideos });
+  return useQuery({
+    queryKey: [url, pageToken, maxResults],
+    queryFn: getVideos,
+  });
 }
