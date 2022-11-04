@@ -53,14 +53,17 @@ export function YoutubeVideoVertical(props: YoutubeVideoVerticalProps) {
       <Link href={href}>
         <img alt={title} src={thumbnails.medium.url} width={'100%'} />
       </Link>
+
       <div css={detailsStyle}>
         <div css={channelProfileStyle} />
+
         <Link href={href} css={informationStyle}>
           <h3>{title}</h3>
           <p>
             {channelTitle} • {timeDifferenceText}
           </p>
         </Link>
+
         <button css={menuButtonStyle}>
           <IconKebab />
         </button>

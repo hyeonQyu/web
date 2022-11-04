@@ -99,9 +99,7 @@ export function useHomePage(params: IUseHomePageParams): IUseHomePage {
 
   // 조회된 유튜브 비디오로부터 채널 아이디 목록 추출 및 다음 페이지 토큰 저장
   useEffect(() => {
-    if (nextPageToken) {
-      setChannelIds(Array.from(new Set(videos.map(({ snippet: { channelId } }) => channelId))));
-    }
+    setChannelIds(Array.from(new Set(videos.map(({ snippet: { channelId } }) => channelId))));
   }, [videos]);
 
   // 채널 목록 불러오기
