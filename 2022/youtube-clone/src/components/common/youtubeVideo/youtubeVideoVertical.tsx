@@ -22,7 +22,7 @@ export function YoutubeVideoVertical(props: YoutubeVideoVerticalProps) {
 
   const detailsStyle = css`
     width: 100%;
-    height: 62px;
+    height: 66px;
     display: flex;
     padding: 10px 12px;
     gap: 12px;

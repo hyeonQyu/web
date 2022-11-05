@@ -14,7 +14,7 @@ export function HomeYoutubeVideoList(props: HomeYoutubeVideoListProps) {
     padding: ${headerHeight + chipBarFilterHeight}px 0 ${footerHeight}px;
 
     & > :not(:first-child) {
-      margin-top: 1px;
+      margin-top: 6px;
     }
   `;
 
