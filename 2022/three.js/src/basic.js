@@ -1,4 +1,4 @@
-import THREE from './three.js';
+import * as THREE from 'three';
 
 class Basic {
   _$container;
