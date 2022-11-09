@@ -75,52 +75,27 @@ class Basic {
   }
 
   _setupModel() {
-    // class CustomSinCurve extends THREE.Curve {
-    //   scale;
-    //
-    //   constructor(scale) {
-    //     super();
-    //     this.scale = scale;
-    //   }
-    //
-    //   getPoint(t) {
-    //     const tx = t * 3 - 1.5;
-    //     const ty = Math.sin(2 * Math.PI * t);
-    //     const tz = 0;
-    //     return new THREE.Vector3(tx, ty, tz).multiplyScalar(this.scale);
-    //   }
-    // }
-    //
-    // const path = new CustomSinCurve(4);
-    // const geometry = new THREE.TubeGeometry(path);
-    //
-    // // 회색 mesh cube 생성
-    // const fillMaterial = new THREE.MeshPhongMaterial({ color: 0x515151 });
-    // const cube = new THREE.Mesh(geometry, fillMaterial);
-    //
-    // // 노란 선의 재질을 만든 후 앞서 만든 geometry를 이용하여 line 생성
-    // const lineMaterial = new THREE.LineBasicMaterial({ color: 0xffff00 });
-    // const line = new THREE.LineSegments(new THREE.WireframeGeometry(geometry), lineMaterial);
-    //
-    // const group = new THREE.Group();
-    // group.add(cube);
-    // group.add(line);
-    //
-    // this._cube = group;
-    // this._scene.add(this._cube);
-
     const points = [];
     for (let i = 0; i < 10; i++) {
       points.push(new THREE.Vector2(Math.sin(i * 0.2) * 3 + 3, (i - 5) * 0.8));
     }
 
-    const geometry = new THREE.BufferGeometry();
-    geometry.setFromPoints(points);
+    const geometry = new THREE.LatheGeometry(points, 24);
 
-    const material = new THREE.LineBasicMaterial({ color: 0xffff00 });
-    const line = new THREE.Line(geometry, material);
+    // 회색 mesh cube 생성
+    const fillMaterial = new THREE.MeshPhongMaterial({ color: 0x515151 });
+    const cube = new THREE.Mesh(geometry, fillMaterial);
 
-    this._scene.add(line);
+    // 노란 선의 재질을 만든 후 앞서 만든 geometry를 이용하여 line 생성
+    const lineMaterial = new THREE.LineBasicMaterial({ color: 0xffff00 });
+    const line = new THREE.LineSegments(new THREE.WireframeGeometry(geometry), lineMaterial);
+
+    const group = new THREE.Group();
+    group.add(cube);
+    group.add(line);
+
+    this._cube = group;
+    this._scene.add(this._cube);
   }
 
   _setupControls() {
