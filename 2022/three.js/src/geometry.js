@@ -75,7 +75,7 @@ class Basic {
   }
 
   _setupModel() {
-    const geometry = new THREE.CircleGeometry(1, 100, Math.PI / 2, Math.PI);
+    const geometry = new THREE.ConeGeometry(0.5, 2, 50, 4, true);
 
     // 회색 mesh cube 생성
     const fillMaterial = new THREE.MeshPhongMaterial({ color: 0x515151 });
