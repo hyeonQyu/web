@@ -75,34 +75,61 @@ class Basic {
   }
 
   _setupModel() {
-    const shape = new THREE.Shape();
+    // const shape = new THREE.Shape();
+    //
+    // const x = -2.5;
+    // const y = -5;
+    // shape.moveTo(x + 2.5, y + 2.5);
+    // shape.bezierCurveTo(x + 2.5, y + 2.5, x + 2, y, x, y);
+    // shape.bezierCurveTo(x - 3, y, x - 3, y + 3.5, x - 3, y + 3.5);
+    // shape.bezierCurveTo(x - 3, y + 5.5, x - 1.5, y + 7.7, x + 2.5, y + 9.5);
+    // shape.bezierCurveTo(x + 6, y + 7.7, x + 8, y + 4.5, x + 8, y + 3.5);
+    // shape.bezierCurveTo(x + 8, y + 3.5, x + 8, y, x + 5, y);
+    // shape.bezierCurveTo(x + 3.5, y, x + 2.5, y + 2.5, x + 2.5, y + 2.5);
+    //
+    // const geometry = new THREE.ShapeGeometry(shape);
+    //
+    // // 회색 mesh cube 생성
+    // const fillMaterial = new THREE.MeshPhongMaterial({ color: 0x515151 });
+    // const cube = new THREE.Mesh(geometry, fillMaterial);
+    //
+    // // 노란 선의 재질을 만든 후 앞서 만든 geometry를 이용하여 line 생성
+    // const lineMaterial = new THREE.LineBasicMaterial({ color: 0xffff00 });
+    // const line = new THREE.LineSegments(new THREE.WireframeGeometry(geometry), lineMaterial);
+    //
+    // const group = new THREE.Group();
+    // group.add(cube);
+    // group.add(line);
+    //
+    // this._cube = group;
+    // this._scene.add(this._cube);
 
-    const x = -2.5;
-    const y = -5;
-    shape.moveTo(x + 2.5, y + 2.5);
-    shape.bezierCurveTo(x + 2.5, y + 2.5, x + 2, y, x, y);
-    shape.bezierCurveTo(x - 3, y, x - 3, y + 3.5, x - 3, y + 3.5);
-    shape.bezierCurveTo(x - 3, y + 5.5, x - 1.5, y + 7.7, x + 2.5, y + 9.5);
-    shape.bezierCurveTo(x + 6, y + 7.7, x + 8, y + 4.5, x + 8, y + 3.5);
-    shape.bezierCurveTo(x + 8, y + 3.5, x + 8, y, x + 5, y);
-    shape.bezierCurveTo(x + 3.5, y, x + 2.5, y + 2.5, x + 2.5, y + 2.5);
+    class CustomSinCurve extends THREE.Curve {
+      scale;
 
-    const geometry = new THREE.ShapeGeometry(shape);
+      constructor(scale) {
+        super();
+        this.scale = scale;
+      }
 
-    // 회색 mesh cube 생성
-    const fillMaterial = new THREE.MeshPhongMaterial({ color: 0x515151 });
-    const cube = new THREE.Mesh(geometry, fillMaterial);
+      getPoint(t) {
+        const tx = t * 3 - 1.5;
+        const ty = Math.sin(2 * Math.PI * t);
+        const tz = 0;
+        return new THREE.Vector3(tx, ty, tz).multiplyScalar(this.scale);
+      }
+    }
 
-    // 노란 선의 재질을 만든 후 앞서 만든 geometry를 이용하여 line 생성
-    const lineMaterial = new THREE.LineBasicMaterial({ color: 0xffff00 });
-    const line = new THREE.LineSegments(new THREE.WireframeGeometry(geometry), lineMaterial);
+    const path = new CustomSinCurve(4);
 
-    const group = new THREE.Group();
-    group.add(cube);
-    group.add(line);
+    const geometry = new THREE.BufferGeometry();
+    const points = path.getPoints(32);
+    geometry.setFromPoints(points);
 
-    this._cube = group;
-    this._scene.add(this._cube);
+    const material = new THREE.LineBasicMaterial({ color: 0xffff00 });
+    const line = new THREE.Line(geometry, material);
+
+    this._scene.add(line);
   }
 
   _setupControls() {
