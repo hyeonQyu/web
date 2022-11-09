@@ -75,22 +75,22 @@ class Basic {
   }
 
   _setupModel() {
-    const geometry = new THREE.TorusGeometry(0.5, 0.1, 10, 32);
+    const shape = new THREE.Shape();
+    shape.moveTo(1, 1);
+    shape.lineTo(1, -1);
+    shape.lineTo(-1, -1);
+    shape.lineTo(-1, 1);
+    shape.bezierCurveTo(2, 3, 3, 2);
+    shape.closePath();
 
-    // 회색 mesh cube 생성
-    const fillMaterial = new THREE.MeshPhongMaterial({ color: 0x515151 });
-    const cube = new THREE.Mesh(geometry, fillMaterial);
+    const geometry = new THREE.BufferGeometry();
+    const points = shape.getPoints();
+    geometry.setFromPoints(points);
 
-    // 노란 선의 재질을 만든 후 앞서 만든 geometry를 이용하여 line 생성
-    const lineMaterial = new THREE.LineBasicMaterial({ color: 0xffff00 });
-    const line = new THREE.LineSegments(new THREE.WireframeGeometry(geometry), lineMaterial);
+    const material = new THREE.LineBasicMaterial({ color: 0xffff00 });
+    const line = new THREE.Line(geometry, material);
 
-    const group = new THREE.Group();
-    group.add(cube);
-    group.add(line);
-
-    this._cube = group;
-    this._scene.add(this._cube);
+    this._scene.add(line);
   }
 
   _setupControls() {
