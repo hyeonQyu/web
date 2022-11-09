@@ -75,12 +75,26 @@ class Basic {
   }
 
   _setupModel() {
-    const points = [];
-    for (let i = 0; i < 10; i++) {
-      points.push(new THREE.Vector2(Math.sin(i * 0.2) * 3 + 3, (i - 5) * 0.8));
-    }
+    const shape = new THREE.Shape();
 
-    const geometry = new THREE.LatheGeometry(points, 24);
+    const x = -2.5;
+    const y = -5;
+    shape.moveTo(x + 2.5, y + 2.5);
+    shape.bezierCurveTo(x + 2.5, y + 2.5, x + 2, y, x, y);
+    shape.bezierCurveTo(x - 3, y, x - 3, y + 3.5, x - 3, y + 3.5);
+    shape.bezierCurveTo(x - 3, y + 5.5, x - 1.5, y + 7.7, x + 2.5, y + 9.5);
+    shape.bezierCurveTo(x + 6, y + 7.7, x + 8, y + 4.5, x + 8, y + 3.5);
+    shape.bezierCurveTo(x + 8, y + 3.5, x + 8, y, x + 5, y);
+    shape.bezierCurveTo(x + 3.5, y, x + 2.5, y + 2.5, x + 2.5, y + 2.5);
+
+    const geometry = new THREE.ExtrudeGeometry(shape, {
+      steps: 1,
+      depth: 4,
+      bevelEnabled: true,
+      bevelThickness: 24,
+      bevelSize: 6,
+      bevelSegments: 11,
+    });
 
     // 회색 mesh cube 생성
     const fillMaterial = new THREE.MeshPhongMaterial({ color: 0x515151 });
