@@ -5,7 +5,9 @@ class Basic {
   _renderer;
   _scene;
   _camera;
-  _cube;
+  _solarSystem;
+  _earthOrbit;
+  _moonOrbit;
 
   constructor() {
     this._$container = document.querySelector('#webgl-container');
@@ -42,8 +44,10 @@ class Basic {
 
   update(ms) {
     const seconds = ms * 0.001;
-    this._cube.rotation.x = seconds;
-    this._cube.rotation.y = seconds;
+
+    this._solarSystem.rotation.y = seconds / 2;
+    this._earthOrbit.rotation.y = seconds * 2;
+    this._moonOrbit.rotation.y = seconds * 5;
   }
 
   _setupRenderer() {
@@ -60,7 +64,7 @@ class Basic {
     const { width, height } = this._getContainerSize();
 
     this._camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 100);
-    this._camera.position.z = 50;
+    this._camera.position.z = 25;
   }
 
   _setupLight() {
@@ -84,6 +88,10 @@ class Basic {
 
     earthOrbit.add(moonOrbit);
     solarSystem.add(earthOrbit);
+
+    this._solarSystem = solarSystem;
+    this._earthOrbit = earthOrbit;
+    this._moonOrbit = moonOrbit;
 
     this._scene.add(solarSystem);
   }
