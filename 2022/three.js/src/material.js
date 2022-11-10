@@ -1,11 +1,11 @@
 import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 class Basic {
   _$container;
   _renderer;
   _scene;
   _camera;
-  _cube;
 
   constructor() {
     this._$container = document.querySelector('#webgl-container');
@@ -15,6 +15,7 @@ class Basic {
 
     this._setupCamera();
     this._setupLight();
+    this._setupControls();
     this._setupModel();
 
     // resize 함수 내에서 다루는 this가 이벤트 객체가 아닌 App 객체를 가르키도록 함
@@ -42,8 +43,6 @@ class Basic {
 
   update(ms) {
     const seconds = ms * 0.001;
-    this._cube.rotation.x = seconds;
-    this._cube.rotation.y = seconds;
   }
 
   _setupRenderer() {
@@ -60,7 +59,7 @@ class Basic {
     const { width, height } = this._getContainerSize();
 
     this._camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 100);
-    this._camera.position.z = 2;
+    this._camera.position.z = 7;
   }
 
   _setupLight() {
@@ -72,12 +71,32 @@ class Basic {
     this._scene.add(light);
   }
 
-  _setupModel() {
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const material = new THREE.MeshPhongMaterial({ color: 0x44a88 });
-    this._cube = new THREE.Mesh(geometry, material);
+  _setupControls() {
+    new OrbitControls(this._camera, this._$container);
+  }
 
-    this._scene.add(this._cube);
+  _setupModel() {
+    const vertices = [];
+    for (let i = 0; i < 10000; i++) {
+      const x = THREE.MathUtils.randFloatSpread(5);
+      const y = THREE.MathUtils.randFloatSpread(5);
+      const z = THREE.MathUtils.randFloatSpread(5);
+
+      vertices.push(x, y, z);
+    }
+
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+
+    const material = new THREE.PointsMaterial({
+      color: 0xff0000,
+      size: 0.03,
+      // false) 거리에 상관없이 같은 크기로 렌더링됨
+      sizeAttenuation: true,
+    });
+
+    const points = new THREE.Points(geometry, material);
+    this._scene.add(points);
   }
 
   _getContainerSize() {
