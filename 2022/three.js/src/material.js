@@ -76,27 +76,18 @@ class Basic {
   }
 
   _setupModel() {
-    const vertices = [];
-    for (let i = 0; i < 10000; i++) {
-      const x = THREE.MathUtils.randFloatSpread(5);
-      const y = THREE.MathUtils.randFloatSpread(5);
-      const z = THREE.MathUtils.randFloatSpread(5);
-
-      vertices.push(x, y, z);
-    }
+    // x, y, z가 총 4번
+    const vertices = [-1, 1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0];
 
     const geometry = new THREE.BufferGeometry();
     geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
 
-    const material = new THREE.PointsMaterial({
+    const material = new THREE.LineBasicMaterial({
       color: 0xff0000,
-      size: 0.03,
-      // false) 거리에 상관없이 같은 크기로 렌더링됨
-      sizeAttenuation: true,
     });
 
-    const points = new THREE.Points(geometry, material);
-    this._scene.add(points);
+    const line = new THREE.Line(geometry, material);
+    this._scene.add(line);
   }
 
   _getContainerSize() {
