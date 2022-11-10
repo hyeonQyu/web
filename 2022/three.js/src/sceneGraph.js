@@ -60,7 +60,7 @@ class Basic {
     const { width, height } = this._getContainerSize();
 
     this._camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 100);
-    this._camera.position.z = 2;
+    this._camera.position.z = 50;
   }
 
   _setupLight() {
@@ -73,11 +73,85 @@ class Basic {
   }
 
   _setupModel() {
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const material = new THREE.MeshPhongMaterial({ color: 0x44a88 });
-    this._cube = new THREE.Mesh(geometry, material);
+    const radius = 1;
+    const widthSegments = 12;
+    const heightSegments = 12;
+    const sphereGeometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments);
 
-    this._scene.add(this._cube);
+    const solarSystem = this._createSolarSystem(sphereGeometry);
+    const earthOrbit = this._createEarthOrbit(sphereGeometry);
+    const moonOrbit = this._createMoonOrbit(sphereGeometry);
+
+    earthOrbit.add(moonOrbit);
+    solarSystem.add(earthOrbit);
+
+    this._scene.add(solarSystem);
+  }
+
+  /**
+   * 태양 객체 생성 후 반환
+   * @param sphereGeometry
+   * @returns {Object3D}
+   * @private
+   */
+  _createSolarSystem(sphereGeometry) {
+    const solarSystem = new THREE.Object3D();
+
+    const sunMaterial = new THREE.MeshPhongMaterial({
+      emissive: 0xffff00,
+      flatShading: true,
+    });
+
+    const sunMesh = new THREE.Mesh(sphereGeometry, sunMaterial);
+    sunMesh.scale.set(3, 3, 3);
+    solarSystem.add(sunMesh);
+
+    return solarSystem;
+  }
+
+  /**
+   * 지구 객체 생성 후 반환
+   * @param sphereGeometry
+   * @returns {Object3D}
+   * @private
+   */
+  _createEarthOrbit(sphereGeometry) {
+    const earthOrbit = new THREE.Object3D();
+
+    const earthMaterial = new THREE.MeshPhongMaterial({
+      color: 0x2233ff,
+      emissive: 0x112244,
+      flatShading: true,
+    });
+
+    const earthMesh = new THREE.Mesh(sphereGeometry, earthMaterial);
+    earthOrbit.position.x = 10;
+    earthOrbit.add(earthMesh);
+
+    return earthOrbit;
+  }
+
+  /**
+   * 달 객체 생성 후 반환
+   * @param sphereGeometry
+   * @returns {Object3D}
+   * @private
+   */
+  _createMoonOrbit(sphereGeometry) {
+    const moonOrbit = new THREE.Object3D();
+    moonOrbit.position.x = 2;
+
+    const moonMaterial = new THREE.MeshPhongMaterial({
+      color: 0x888888,
+      emissive: 0x222222,
+      flatShading: true,
+    });
+
+    const moonMesh = new THREE.Mesh(sphereGeometry, moonMaterial);
+    moonMesh.scale.set(0.5, 0.5, 0.5);
+    moonOrbit.add(moonMesh);
+
+    return moonOrbit;
   }
 
   _getContainerSize() {
