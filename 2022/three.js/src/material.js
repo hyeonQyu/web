@@ -76,15 +76,17 @@ class Basic {
   }
 
   _setupModel() {
-    const material = new THREE.MeshBasicMaterial({
-      visible: true,
-      transparent: true,
-      opacity: 0.5,
-      depthTest: true,
-      depthWrite: true,
-      side: THREE.FrontSide,
-      color: 0xffffff,
-      wireframe: false,
+    const textureLoader = new THREE.TextureLoader();
+    const texture = textureLoader.load('textures/texture1.jpg', (texture) => {
+      texture.repeat.x = 2;
+      texture.repeat.y = 2;
+
+      texture.wrapS = THREE.MirroredRepeatWrapping;
+      texture.wrapT = THREE.MirroredRepeatWrapping;
+    });
+
+    const material = new THREE.MeshStandardMaterial({
+      map: texture,
     });
 
     const box = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), material);
