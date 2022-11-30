@@ -59,16 +59,20 @@ class Basic {
     const { width, height } = this._getContainerSize();
 
     this._camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 100);
-    this._camera.position.z = 7;
+    this._camera.position.z = 3;
   }
 
   _setupLight() {
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+    this._scene.add(ambientLight);
+
     const color = 0xffffff;
     const intensity = 1;
     const light = new THREE.DirectionalLight(color, intensity);
     light.position.set(-1, 2, 4);
 
-    this._scene.add(light);
+    this._camera.add(light);
+    this._scene.add(this._camera);
   }
 
   _setupControls() {
@@ -77,24 +81,50 @@ class Basic {
 
   _setupModel() {
     const textureLoader = new THREE.TextureLoader();
-    const texture = textureLoader.load('textures/texture1.jpg', (texture) => {
-      texture.repeat.x = 2;
-      texture.repeat.y = 2;
 
-      texture.wrapS = THREE.MirroredRepeatWrapping;
-      texture.wrapT = THREE.MirroredRepeatWrapping;
-    });
+    const map = textureLoader.load('textures/glass/Glass_Window_002_basecolor.jpg');
+    const aoMap = textureLoader.load('textures/glass/Glass_Window_002_ambientOcclusion.jpg');
+    const heightMap = textureLoader.load('textures/glass/Glass_Window_002_height.png');
+    const normalMap = textureLoader.load('textures/glass/Glass_Window_002_normal.jpg');
+    const roughnessMap = textureLoader.load('textures/glass/Glass_Window_002_roughness.jpg');
+    const metallicMap = textureLoader.load('textures/glass/Glass_Window_002_metallic.jpg');
+    const alphaMap = textureLoader.load('textures/glass/Glass_Window_002_opacity.jpg');
+    const lightMap = textureLoader.load('textures/glass/light.jpg');
 
     const material = new THREE.MeshStandardMaterial({
-      map: texture,
+      map,
+
+      normalMap,
+
+      displacementMap: heightMap,
+      displacementScale: 0.2,
+      displacementBias: -0.15,
+
+      aoMap,
+      aoMapIntensity: 1,
+
+      roughnessMap,
+      roughness: 0.5,
+
+      metalnessMap: metallicMap,
+      metalness: 0.5,
+
+      alphaMap,
+      transparent: true,
+      side: THREE.DoubleSide,
+
+      lightMap,
+      lightMapIntensity: 2,
     });
 
-    const box = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), material);
+    const box = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1, 256, 256, 256), material);
     box.position.set(-1, 0, 0);
+    box.geometry.attributes.uv2 = box.geometry.attributes.uv;
     this._scene.add(box);
 
-    const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.7, 32, 32), material);
+    const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.7, 512, 512), material);
     sphere.position.set(1, 0, 0);
+    sphere.geometry.attributes.uv2 = sphere.geometry.attributes.uv;
     this._scene.add(sphere);
   }
 
