@@ -70,7 +70,7 @@ class Basic {
   }
 
   _setupLight() {
-    const light = new THREE.AmbientLight(0xffffff, 5);
+    const light = new THREE.HemisphereLight(0xb0d8f5, 0xbb7a1c, 2);
 
     this._scene.add(light);
     this._light = light;
