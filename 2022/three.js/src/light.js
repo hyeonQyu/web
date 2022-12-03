@@ -70,9 +70,12 @@ class Basic {
   }
 
   _setupLight() {
-    this._light = new THREE.DirectionalLight(0xffffff, 2);
+    this._light = new THREE.SpotLight(0xffffff, 3);
     this._light.position.set(0, 5, 0);
     this._light.target.position.set(0, 0, 0);
+    this._light.angle = THREE.MathUtils.degToRad(50);
+    // 빛의 감쇄율 (0 ~ 1)
+    this._light.penumbra = 0.5;
 
     this._scene.add(this._light.target);
     this._scene.add(this._light);
