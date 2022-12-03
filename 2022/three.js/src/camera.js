@@ -56,6 +56,20 @@ class Basic {
     const smallSpherePivot = this._scene.getObjectByName('smallSpherePivot');
     if (smallSpherePivot) {
       smallSpherePivot.rotation.y = THREE.MathUtils.degToRad(seconds * 50);
+
+      const smallSphere = smallSpherePivot.children[0];
+      smallSphere.getWorldPosition(this._camera.position);
+
+      const targetPivot = this._scene.getObjectByName('targetPivot');
+      if (targetPivot) {
+        targetPivot.rotation.y = THREE.MathUtils.degToRad(seconds * 50 + 10);
+
+        const target = targetPivot.children[0];
+        const pt = new THREE.Vector3();
+
+        target.getWorldPosition(pt);
+        this._camera.lookAt(pt);
+      }
     }
   }
 
@@ -73,7 +87,7 @@ class Basic {
     const { width, height } = this._getContainerSize();
 
     const aspect = width / height;
-    this._camera = new THREE.OrthographicCamera(-aspect, aspect, 1, -1, 0.1, 100);
+    this._camera = new THREE.PerspectiveCamera(75, aspect, 0.1, 100);
 
     this._camera.zoom = 0.1;
     this._camera.position.set(7, 7, 0);
@@ -149,6 +163,13 @@ class Basic {
     smallSpherePivot.name = 'smallSpherePivot';
     smallSphere.position.set(3, 0.5, 0);
     this._scene.add(smallSpherePivot);
+
+    const targetPivot = new THREE.Object3D();
+    const target = new THREE.Object3D();
+    targetPivot.add(target);
+    targetPivot.name = 'targetPivot';
+    target.position.set(3, 0.5, 0);
+    this._scene.add(targetPivot);
   }
 
   _getContainerSize() {
