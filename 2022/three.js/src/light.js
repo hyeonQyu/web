@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { RectAreaLightUniformsLib } from 'three/examples/jsm/lights/RectAreaLightUniformsLib';
 
 class Basic {
   _$container;
@@ -70,14 +71,14 @@ class Basic {
   }
 
   _setupLight() {
-    this._light = new THREE.SpotLight(0xffffff, 3);
-    this._light.position.set(0, 5, 0);
-    this._light.target.position.set(0, 0, 0);
-    this._light.angle = THREE.MathUtils.degToRad(50);
-    // 빛의 감쇄율 (0 ~ 1)
-    this._light.penumbra = 0.5;
+    // 초기화 코드 선행 필요
+    RectAreaLightUniformsLib.init();
 
-    this._scene.add(this._light.target);
+    this._light = new THREE.RectAreaLight(0xffffff, 30, 3, 0.5);
+    this._light.position.set(0, 5, 0);
+    // RectAreaLight는 target이 아닌 각도로 대상 지정
+    this._light.rotation.x = THREE.MathUtils.degToRad(-90);
+
     this._scene.add(this._light);
   }
 
