@@ -53,6 +53,12 @@ class Basic {
         const smallSphere = smallSpherePivot.children[0];
         smallSphere.getWorldPosition(this._light.target.position);
       }
+
+      // PointLight
+      if (this._light instanceof THREE.PointLight) {
+        const smallSphere = smallSpherePivot.children[0];
+        smallSphere.getWorldPosition(this._light.position);
+      }
     }
   }
 
@@ -82,19 +88,15 @@ class Basic {
     this._scene.add(auxLight);
     this._scene.add(auxLight.target);
 
-    this._light = new THREE.DirectionalLight(0xffffff, 0.5);
+    this._light = new THREE.PointLight(0xffffff, 0.7);
     this._light.position.set(0, 5, 0);
-    this._light.target.position.set(0, 0, 0);
     this._light.castShadow = true;
 
-    this._light.shadow.camera.top = this._light.shadow.camera.right = 6;
-    this._light.shadow.camera.bottom = this._light.shadow.camera.left = -6;
-
     this._light.shadow.mapSize.width = this._light.shadow.mapSize.height = 2048;
-    this._light.shadow.radius = 10;
+    this._light.shadow.radius = 1;
 
     this._scene.add(this._light);
-    this._scene.add(this._light.target);
+    // this._scene.add(this._light.target);
   }
 
   _setupControls() {
