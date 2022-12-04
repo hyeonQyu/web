@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { RectAreaLightUniformsLib } from 'three/examples/jsm/lights/RectAreaLightUniformsLib';
 
 class Basic {
   _$container;
@@ -49,12 +48,18 @@ class Basic {
     const smallSpherePivot = this._scene.getObjectByName('smallSpherePivot');
     if (smallSpherePivot) {
       smallSpherePivot.rotation.y = THREE.MathUtils.degToRad(seconds * 50);
+
+      if (this._light.target) {
+        const smallSphere = smallSpherePivot.children[0];
+        smallSphere.getWorldPosition(this._light.target.position);
+      }
     }
   }
 
   _setupRenderer() {
     this._renderer = new THREE.WebGLRenderer({ antialias: true });
     this._renderer.setPixelRatio(window.devicePixelRatio);
+    this._renderer.shadowMap.enabled = true;
     this._$container.appendChild(this._renderer.domElement);
   }
 
@@ -71,15 +76,19 @@ class Basic {
   }
 
   _setupLight() {
-    // 초기화 코드 선행 필요
-    RectAreaLightUniformsLib.init();
+    const auxLight = new THREE.DirectionalLight(0xffffff, 0.5);
+    auxLight.position.set(0, 5, 0);
+    auxLight.target.position.set(0, 0, 0);
+    this._scene.add(auxLight);
+    this._scene.add(auxLight.target);
 
-    this._light = new THREE.RectAreaLight(0xffffff, 30, 3, 0.5);
+    this._light = new THREE.DirectionalLight(0xffffff, 0.5);
     this._light.position.set(0, 5, 0);
-    // RectAreaLight는 target이 아닌 각도로 대상 지정
-    this._light.rotation.x = THREE.MathUtils.degToRad(-90);
+    this._light.target.position.set(0, 0, 0);
+    this._light.castShadow = true;
 
     this._scene.add(this._light);
+    this._scene.add(this._light.target);
   }
 
   _setupControls() {
@@ -97,9 +106,10 @@ class Basic {
 
     const ground = new THREE.Mesh(groundGeometry, groundMaterial);
     ground.rotation.x = THREE.MathUtils.degToRad(-90);
+    ground.receiveShadow = true;
     this._scene.add(ground);
 
-    const bigSphereGeometry = new THREE.SphereGeometry(1.5, 64, 64, 0, Math.PI);
+    const bigSphereGeometry = new THREE.TorusKnotGeometry(1, 0.3, 128, 64, 2, 3);
     const bigSphereMaterial = new THREE.MeshStandardMaterial({
       color: '#ffffff',
       roughness: 0.1,
@@ -107,7 +117,9 @@ class Basic {
     });
 
     const bigSphere = new THREE.Mesh(bigSphereGeometry, bigSphereMaterial);
-    bigSphere.rotation.x = THREE.MathUtils.degToRad(-90);
+    bigSphere.position.y = 1.6;
+    bigSphere.receiveShadow = true;
+    bigSphere.castShadow = true;
     this._scene.add(bigSphere);
 
     const torusGeometry = new THREE.TorusGeometry(0.4, 0.1, 32, 32);
@@ -122,6 +134,8 @@ class Basic {
       const torus = new THREE.Mesh(torusGeometry, torusMaterial);
       torusPivot.rotation.y = THREE.MathUtils.degToRad(45 * i);
       torus.position.set(3, 0.5, 0);
+      torus.receiveShadow = true;
+      torus.castShadow = true;
       torusPivot.add(torus);
       this._scene.add(torusPivot);
     }
@@ -135,6 +149,8 @@ class Basic {
 
     const smallSpherePivot = new THREE.Object3D();
     const smallSphere = new THREE.Mesh(smallSphereGeometry, smallSphereMaterial);
+    smallSphere.receiveShadow = true;
+    smallSphere.castShadow = true;
     smallSpherePivot.add(smallSphere);
     smallSpherePivot.name = 'smallSpherePivot';
     smallSphere.position.set(3, 0.5, 0);
