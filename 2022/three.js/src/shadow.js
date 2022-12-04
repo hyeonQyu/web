@@ -86,8 +86,11 @@ class Basic {
     this._light.position.set(0, 5, 0);
     this._light.target.position.set(0, 0, 0);
     this._light.castShadow = true;
+
     this._light.shadow.camera.top = this._light.shadow.camera.right = 6;
     this._light.shadow.camera.bottom = this._light.shadow.camera.left = -6;
+
+    this._light.shadow.mapSize.width = this._light.shadow.mapSize.height = 2048;
 
     this._scene.add(this._light);
     this._scene.add(this._light.target);
