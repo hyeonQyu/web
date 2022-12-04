@@ -91,6 +91,7 @@ class Basic {
     this._light.shadow.camera.bottom = this._light.shadow.camera.left = -6;
 
     this._light.shadow.mapSize.width = this._light.shadow.mapSize.height = 2048;
+    this._light.shadow.radius = 10;
 
     this._scene.add(this._light);
     this._scene.add(this._light.target);
