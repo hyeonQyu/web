@@ -6,16 +6,12 @@ class Basic {
   _scene;
   _camera;
   _cube;
+  _videoTexture;
 
   constructor() {
     this._$container = document.querySelector('#webgl-container');
 
-    this._setupRenderer();
-    this._setupScene();
-
-    this._setupCamera();
-    this._setupLight();
-    this._setupModel();
+    this._init();
 
     // resize 함수 내에서 다루는 this가 이벤트 객체가 아닌 App 객체를 가르키도록 함
     window.onresize = this.resize.bind(this);
@@ -23,6 +19,17 @@ class Basic {
 
     // frame에 render 메소드 호출
     requestAnimationFrame(this.render.bind(this));
+  }
+
+  async _init() {
+    this._setupRenderer();
+    this._setupScene();
+
+    this._setupCamera();
+    this._setupLight();
+
+    await this._setupVideo();
+    this._setupModel();
   }
 
   resize() {
@@ -72,9 +79,32 @@ class Basic {
     this._scene.add(light);
   }
 
+  async _setupVideo() {
+    const video = document.createElement('video');
+
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      const constraints = {
+        video: { width: 1280, height: 720 },
+      };
+
+      try {
+        video.srcObject = await navigator.mediaDevices.getUserMedia(constraints);
+        await video.play();
+
+        this._videoTexture = new THREE.VideoTexture(video);
+      } catch (e) {
+        console.error('카메라에 접근할 수 없습니다', e);
+      }
+    } else {
+      console.error('MediaDevices 인터페이스 사용 불가');
+    }
+  }
+
   _setupModel() {
     const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const material = new THREE.MeshPhongMaterial({ color: 0x44a88 });
+    const material = new THREE.MeshPhongMaterial({
+      map: this._videoTexture,
+    });
     this._cube = new THREE.Mesh(geometry, material);
 
     this._scene.add(this._cube);
